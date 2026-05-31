@@ -1,0 +1,4 @@
+id,pattern,expected,tolerance,severity,must_find,note
+main_acc,"g2d\s*\(?\s*1\s*theta\s*\)?\s*=\s*(?P<value>\d+(?:\.\d+)?)",68.85,0.005,P0,true,"Main result number must match the evidence ledger."
+verifier_acc,"verifier\s*=\s*(?P<value>\d+(?:\.\d+)?)",64.19,0.005,P1,true,"Mechanism-isolation number should not drift."
+calibrated_acc,"g2d\s*\(?\s*2\s*theta\s*\)?\s*=\s*(?P<value>\d+(?:\.\d+)?)",67.53,0.005,P1,true,"Calibrated/sensitivity number should remain separate and exact."

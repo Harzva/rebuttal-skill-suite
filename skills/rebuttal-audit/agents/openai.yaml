@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rebuttal Audit"
+  short_description: "Audit rebuttals with reviewer personas"
+  default_prompt: "Use $rebuttal-audit to polish a one-page academic rebuttal with reviewer personas, layout checks, leakage checks, and submission readiness gates."

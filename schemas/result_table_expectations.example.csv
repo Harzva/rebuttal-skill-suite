@@ -1,0 +1,5 @@
+id,row_key,row,column,expected,tolerance,severity,must_find,note
+main_result,role,main claim,avg,68.85,0.005,P0,true,"Main claim table row must match the promoted strict result."
+mechanism_result,role,mechanism,avg,64.19,0.005,P1,true,"Mechanism row should match verifier-only evidence."
+calibrated_result,role,calibrated,avg,67.53,0.005,P1,true,"Calibrated row must stay separate from the main claim."
+fixed_pair_result,role,diagnostic,avg,66.38,0.005,P1,true,"Diagnostic row should preserve full-benchmark fixed-pair evidence."

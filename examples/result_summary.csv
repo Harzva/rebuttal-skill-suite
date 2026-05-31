@@ -1,0 +1,5 @@
+role,row,label_use,avg
+main claim,G2D(1theta),none,68.85
+mechanism,Verifier,none,64.19
+diagnostic,fixed-pair,shared pair,66.38
+calibrated,G2D(2theta),per theta,67.53

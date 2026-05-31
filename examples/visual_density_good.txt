@@ -1,0 +1,7 @@
+# Metrics fixture for check_pdf_visual_density.py.
+width=1020
+height=1320
+mean_density=0.052
+max_band_density=0.176
+dense_band_count=2
+band_count=55

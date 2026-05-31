@@ -1,0 +1,6 @@
+page_width=612
+page_height=792
+left_max_y=718
+right_max_y=692
+max_y=718
+word_count=760

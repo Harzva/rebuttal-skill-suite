@@ -1,0 +1,3 @@
+reviewer,issue_id,severity,concern,response_anchor,status,evidence_pointer,rationale
+bCeM,protocol,P0,Clarify strict zero-shot versus calibrated diagnostics,not present in response,todo,,
+FEoB,negative,P1,Bound negative cases and broader use,negative cases,answered,,

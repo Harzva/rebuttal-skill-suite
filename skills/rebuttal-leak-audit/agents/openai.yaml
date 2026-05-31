@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rebuttal Leak Audit"
+  short_description: "Find internal notes in rebuttals."
+  default_prompt: "Audit this rebuttal for internal notes, developer remarks, local paths, tool traces, and wording that should not be shown to reviewers or ACs."

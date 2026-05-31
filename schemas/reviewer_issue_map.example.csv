@@ -1,0 +1,6 @@
+reviewer,issue_id,severity,concern,response_anchor,status,evidence_pointer,rationale
+bCeM,protocol,P0,Clarify strict zero-shot versus calibrated diagnostics,strict zero-shot claim,answered,Protocol Summary,
+bCeM,cost,P1,Provide memory latency and route-ratio evidence,cost comparison covering proposal-only,answered,Cost table,
+FEoB,negative,P1,Bound negative cases and broader use,negative cases and broader use,answered,Limitations paragraph,
+MekP,threshold,P1,Explain threshold and label-use attribution,threshold and label use,answered,Protocol Summary,
+y76H,clarity,P2,Make the main result easy to audit,main result is label-free,bounded,Revision map,

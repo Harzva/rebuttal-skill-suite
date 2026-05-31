@@ -1,0 +1,7 @@
+# Deliberately crowded visual-density fixture.
+width=1020
+height=1320
+mean_density=0.116
+max_band_density=0.371
+dense_band_count=12
+band_count=55
