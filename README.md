@@ -1,46 +1,66 @@
-# Rebuttal Skill Suite
+<p align="center">
+  <img src="docs/readme-assets/logo.svg" alt="Rebuttal Skill Suite logo" width="220" />
+</p>
 
-A reusable Codex skill suite for high-stakes academic rebuttals. It turns author response writing into a closed loop:
+<h1 align="center">Rebuttal Skill Suite</h1>
 
-1. Generate a candidate response.
-2. Attack it with reviewer and AC personas.
-3. Aggregate feedback into P0/P1/P2 risks.
-4. Apply the smallest evidence-backed patch.
-5. Re-run mechanical gates.
-6. Stop when remaining issues are optional polish.
+<p align="center">
+  A Codex skill suite for turning high-stakes academic rebuttals into an evidence-backed review loop.
+</p>
 
-## Contents
+<p align="center">
+  <a href="./VERSION"><img alt="version" src="https://img.shields.io/badge/version-0.21.0-2f6fed"></a>
+  <a href="./LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT-111827"></a>
+  <img alt="runtime" src="https://img.shields.io/badge/runtime-Bash%20%2B%20Python-0f766e">
+  <img alt="codex" src="https://img.shields.io/badge/Codex-skill%20suite-7c3aed">
+</p>
 
-- `skills/rebuttal-audit/`: one-page rebuttal audit skill with layout, reviewer coverage, protocol, cost, and adversarial iteration checks.
-- `skills/rebuttal-leak-audit/`: leakage audit skill for internal notes, local paths, tool traces, private experiment logistics, and tactical wording.
-- `reviewer_roles/`: independent reviewer, AC, artifact-consistency, and layout-auditor prompts.
-- `workflows/adversarial_rebuttal_loop.md`: the end-to-end iteration protocol.
-- `prompts/upgrade_skill_suite.md`: a paste-ready prompt for repeated suite upgrades from real rebuttal experience.
-- `scripts/run_rebuttal_gates.sh`: compile + high-risk leak audit + layout/content audit.
-- `scripts/install_skills.sh`: install, dry-run, or sync-check the two skills under a target `CODEX_HOME`.
-- `scripts/build_release_archive.sh`: build and validate a distributable tarball without polluting the repo.
-- `scripts/aggregate_reviewer_feedback.py`: group reviewer-persona feedback into P0/P1/P2 buckets.
-- `scripts/check_claim_ledger.py`: optional project-specific claim ledger for evidence/scope/label-use checks.
-- `scripts/check_reported_numbers.py`: optional expected-number ledger for accuracy/result drift checks.
-- `scripts/check_result_table.py`: optional structured CSV/TSV result-table checker.
-- `scripts/check_reviewer_issue_map.py`: optional reviewer-issue coverage checker for mapping original concerns to response anchors.
-- `scripts/check_rebuttal_tone.py`: optional tone-risk checker for defensive, overclaiming, casual, or strategy-like wording.
-- `scripts/check_cost_evidence.py`: optional cost-evidence checker for memory, latency baseline, route ratio, and relevant baseline families.
-- `scripts/check_revision_map.py`: optional revision/protocol-map checker for role and label-use consistency.
-- `scripts/check_layout_readiness.py`: optional layout-readiness checker for lower-page whitespace and column-bottom balance.
-- `scripts/check_response_text.py`: optional pasted-response checker for OpenReview/CMT/plain text-box submissions.
-- `scripts/check_revision_promises.py`: optional checker for concrete, auditable revision promises.
-- `scripts/check_persona_outputs.py`: validates reviewer personas and persona outputs keep the P0/P1/P2 structure.
-- `scripts/run_regression_fixtures.sh`: proves good fixtures pass and intentionally bad fixtures fail.
-- `scripts/validate_release_package.py`: checks required files, executable scripts, version/changelog alignment, references, and private/project-specific text leakage.
-- `scripts/validate_suite.sh`: release validation wrapper.
-- `scripts/validate_repo_clean.py`: release hygiene check for generated artifacts.
-- `schemas/claim_ledger.example.csv`: example claim-ledger schema.
-- `schemas/reported_numbers.example.csv`: example expected-number schema.
-- `schemas/result_table_expectations.example.csv`: example structured result-table expectation schema.
-- `examples/`: anonymous toy rebuttal and persona-feedback fixtures.
+<p align="center">
+  <a href="#install-locally">Install</a> |
+  <a href="#run-mechanical-gates">Run gates</a> |
+  <a href="#reviewer-persona-loop">Reviewer loop</a> |
+  <a href="#release-validation">Release validation</a> |
+  <a href="./CHANGELOG.md">Changelog</a>
+</p>
+
+## Why It Exists
+
+Author responses fail when they sound polished but still leak private process, contradict the paper, miss reviewer-specific evidence, overclaim results, or promise revisions that cannot be audited. Rebuttal Skill Suite packages those failure modes into reusable Codex skills, reviewer personas, schema checks, regression fixtures, and release hygiene scripts.
+
+The suite is built around one rule: every rebuttal patch should be the smallest change backed by evidence, and every public-facing claim should survive independent mechanical checks.
+
+```mermaid
+flowchart LR
+    A["Draft response"] --> B["Reviewer and AC personas"]
+    B --> C["Aggregate P0 / P1 / P2 risks"]
+    C --> D["Patch with evidence"]
+    D --> E["Run mechanical gates"]
+    E --> F{"P0/P1 left?"}
+    F -- yes --> B
+    F -- no --> G["Freeze; remaining work is P2 polish"]
+```
+
+## What Is Included
+
+| Area | Paths | Purpose |
+| --- | --- | --- |
+| Codex skills | `skills/rebuttal-audit/`, `skills/rebuttal-leak-audit/` | One-page rebuttal audit and public-leak audit workflows. |
+| Reviewer roles | `reviewer_roles/` | Independent reviewer, AC, layout, artifact-consistency, protocol/cost, and fairness passes. |
+| End-to-end workflow | `workflows/adversarial_rebuttal_loop.md` | The closed-loop iteration protocol. |
+| Upgrade prompt | `prompts/upgrade_skill_suite.md` | Paste-ready prompt for extending the suite from real rebuttal lessons. |
+| Mechanical gates | `scripts/run_rebuttal_gates.sh`, `scripts/validate_suite.sh` | Compile, leak, layout, content, schema, and regression validation wrappers. |
+| Optional ledgers | `schemas/*.example.csv` | Claim, number, result-table, and reviewer-issue map schemas. |
+| Regression fixtures | `examples/` | Anonymous good examples and intentionally bad fixtures used by validation scripts. |
+| Release tooling | `scripts/build_release_archive.sh`, `scripts/validate_release_package.py`, `scripts/validate_repo_clean.py` | Build and verify a clean distributable archive. |
 
 ## Install Locally
+
+Requirements:
+
+- Bash
+- Python 3
+- Codex skills directory, usually `~/.codex/skills`
+- Optional TeX/PDF tooling when checking rendered one-page rebuttal PDFs
 
 Copy the skills into your Codex skills directory:
 
@@ -48,13 +68,21 @@ Copy the skills into your Codex skills directory:
 bash scripts/install_skills.sh
 ```
 
-Check installed copies match the repository:
+Check installed copies match this repository:
 
 ```bash
 bash scripts/install_skills.sh --check
 ```
 
+Install under a custom Codex home:
+
+```bash
+bash scripts/install_skills.sh --codex-home /path/to/.codex
+```
+
 ## Run Mechanical Gates
+
+Run the main rebuttal gate against a rendered response source:
 
 ```bash
 bash scripts/run_rebuttal_gates.sh \
@@ -64,70 +92,18 @@ bash scripts/run_rebuttal_gates.sh \
 
 The gate compiles the TeX, fails on high-severity public-facing leaks, checks reviewer coverage, page count, LaTeX warnings, short visual tail lines, protocol/cost consistency signals, and one-page fullness.
 
-To add paper-specific claim checks without hardcoding them into the suite:
+Add project-specific evidence ledgers without hardcoding paper facts into the suite:
 
 ```bash
 REBUTTAL_CLAIM_LEDGER=/path/to/claim_ledger.csv \
-  bash scripts/run_rebuttal_gates.sh /path/to/rebuttal.tex FEoB,bCeM,y76H,MekP
-```
-
-To also check reported numbers:
-
-```bash
 REBUTTAL_NUMBER_LEDGER=/path/to/reported_numbers.csv \
-  bash scripts/run_rebuttal_gates.sh /path/to/rebuttal.tex FEoB,bCeM,y76H,MekP
-```
-
-To check a structured result summary table:
-
-```bash
 REBUTTAL_RESULT_TABLE=/path/to/result_summary.csv \
 REBUTTAL_RESULT_EXPECTATIONS=/path/to/result_table_expectations.csv \
-  bash scripts/run_rebuttal_gates.sh /path/to/rebuttal.tex FEoB,bCeM,y76H,MekP
-```
-
-To check that every original reviewer issue maps to a concrete response anchor:
-
-```bash
 REBUTTAL_ISSUE_MAP=/path/to/reviewer_issue_map.csv \
   bash scripts/run_rebuttal_gates.sh /path/to/rebuttal.tex FEoB,bCeM,y76H,MekP
 ```
 
-The issue map should include `reviewer`, `issue_id`, `concern`, `response_anchor`, `status`, and optional `evidence_pointer` / `rationale` columns. This is useful for the final checklist pass before freezing.
-
-To check tone risks before final submission:
-
-```bash
-python3 scripts/check_rebuttal_tone.py /path/to/rebuttal.tex --fail-on P1
-```
-
-This flags defensive reviewer-blame, absolute overclaims, casual intensifiers, and strategy-like wording that should be rewritten into neutral scientific clarification. It suppresses common bounded/negative uses such as `does not assume X is always reliable`.
-
-To check cost evidence before final submission:
-
-```bash
-python3 scripts/check_cost_evidence.py /path/to/rebuttal.tex --fail-on P1
-```
-
-This flags cost answers that mention cost/routing but omit memory, latency relative to a named baseline, route ratio, or relevant proposal-only / VLM-only / verifier-only / routed-family comparisons. The main gate runs this check nonblocking by default unless `REBUTTAL_COST_FAIL_ON` is raised.
-
-To check a compact revision/protocol map:
-
-```bash
-python3 scripts/check_revision_map.py /path/to/rebuttal.tex --fail-on P1
-```
-
-This flags rows where a main/deployable claim looks tuned, a diagnostic/fixed-pair row lacks shared-pair wording, or a calibrated/tuned row looks label-free. The main gate runs this check nonblocking by default unless `REBUTTAL_REVISION_MAP_FAIL_ON` is raised.
-
-To check one-page layout readiness:
-
-```bash
-python3 scripts/check_layout_readiness.py /path/to/rebuttal.pdf --fail-on P1
-```
-
-This flags large lower-page blanks and severe column-bottom imbalance, while recommending safe title/spacing/table-placement changes instead of filler. The main gate runs this check nonblocking by default unless `REBUTTAL_LAYOUT_READINESS_FAIL_ON` is raised.
-
-To check the final text that will be pasted into a platform response box:
+Check a final text-box submission, such as OpenReview or CMT:
 
 ```bash
 REBUTTAL_RESPONSE_TEXT=/path/to/final_response.md \
@@ -136,142 +112,23 @@ REBUTTAL_RESPONSE_PLATFORM=openreview \
   bash scripts/run_rebuttal_gates.sh /path/to/rebuttal.tex FEoB,bCeM,y76H,MekP
 ```
 
-This catches missing reviewer IDs, unresolved placeholders, local paths, and LaTeX-only layout commands that may be harmless in a PDF but unsafe in a pasted response.
+## Focused Checkers
 
-To check whether promised revisions are concrete enough for reviewers to audit:
+| Checker | Example command | Catches |
+| --- | --- | --- |
+| Claim ledger | `python3 scripts/check_claim_ledger.py examples/anonymous_rebuttal.tex --ledger schemas/claim_ledger.example.csv` | Evidence/scope/label-use drift. |
+| Reported numbers | `python3 scripts/check_reported_numbers.py examples/anonymous_rebuttal.tex --numbers schemas/reported_numbers.example.csv` | Result-number mismatch. |
+| Result tables | `python3 scripts/check_result_table.py examples/result_summary.csv --expect schemas/result_table_expectations.example.csv` | Structured CSV/TSV expectation drift. |
+| Reviewer issue map | `python3 scripts/check_reviewer_issue_map.py examples/issue_map_response_good.md --map schemas/reviewer_issue_map.example.csv --reviewers FEoB,bCeM,y76H,MekP --fail-on P1` | Missing reviewer concern coverage. |
+| Tone | `python3 scripts/check_rebuttal_tone.py examples/tone_good.md --fail-on P1` | Defensive, overclaiming, casual, or strategy-like wording. |
+| Cost evidence | `python3 scripts/check_cost_evidence.py examples/cost_evidence_good.md --fail-on P1` | Cost answers without memory, latency baseline, route ratio, or relevant baseline families. |
+| Revision map | `python3 scripts/check_revision_map.py examples/revision_map_good.tex --fail-on P1 --require-map` | Role, label-use, fixed-pair, and calibrated/tuned inconsistencies. |
+| Layout readiness | `python3 scripts/check_layout_readiness.py examples/layout_metrics_good.txt --fail-on P2` | Lower-page blanks, column imbalance, and low extracted word density. |
+| Response text | `python3 scripts/check_response_text.py examples/platform_response_good.md --reviewers FEoB,bCeM,y76H,MekP --require-reviewers --platform openreview --max-words 220 --max-chars 1500` | Missing reviewer IDs, placeholders, local paths, and platform-unsafe LaTeX commands. |
+| Revision promises | `python3 scripts/check_revision_promises.py examples/revision_promises_good.md --fail-on P1` | Broad promises without a concrete revised-paper location or evidence hook. |
+| Visual density | `python3 scripts/check_pdf_visual_density.py rebuttal.pdf --fail-on P1` | Screenshot-style dense bands in compact rendered PDFs. |
 
-```bash
-python3 scripts/check_revision_promises.py /path/to/rebuttal.tex --fail-on P1
-```
-
-This flags `we will add/clarify/report...` statements that lack a table, figure, appendix, caption, artifact, repository, or revised-paper location in the same paragraph.
-The checker is LaTeX-aware enough to preserve escaped percentage signs such as `\%` when scanning compact result paragraphs, so a percentage-heavy sentence does not hide later revision-location text.
-Limitation, failure, and weak-case promises are checked explicitly: `we will state this limitation` should name the limitation paragraph, discussion section, table caption, appendix, or artifact where the bound will become auditable.
-For compact LaTeX revision maps, `tabular` rows are checked as row-level contexts so a `Where` cell only supports promises in the same row.
-
-## Run Reviewer Personas
-
-Use the prompt files in `reviewer_roles/` as independent passes over the rendered PDF and source TeX:
-
-```text
-Use reviewer_roles/bCeM_protocol_cost.md to review rebuttal.pdf and rebuttal.tex.
-Find P0/P1/P2 issues first, then propose minimal fixes.
-```
-
-Recommended order:
-
-1. `bCeM_protocol_cost.md`
-2. `evidence_artifact_consistency.md`
-3. `FEoB_deployment_fairness.md`
-4. `MekP_threshold_attribution.md`
-5. `layout_submission_auditor.md`
-6. `y76H_supportive_clarity.md`
-7. `AC_synthesizer.md`
-
-After collecting persona outputs, aggregate them:
-
-```bash
-python3 scripts/aggregate_reviewer_feedback.py feedback_dir/
-```
-
-Check persona outputs preserve the required sections:
-
-```bash
-python3 scripts/check_persona_outputs.py feedback_dir/
-```
-
-## P0/P1/P2 Severity Standard
-
-- `P0`: factual contradiction, protocol ambiguity, label-use confusion, private leakage, evidence mismatch, or anything that can make the AC distrust the response.
-- `P1`: missing reviewer-specific evidence, cost/fairness/negative-case gap, unclear attribution, overclaiming, vague limitation promise, or a table/prose mismatch that weakens score recovery.
-- `P2`: density, wording, table polish, optional title/spacing, harmless warnings, or taste-level suggestions.
-
-## Twenty Upgrade Patterns Encoded in 0.2.0
-
-1. Force strict results, diagnostics, and calibrated analyses into separate language.
-2. Require threshold and fixed-pair claims to state scope.
-3. Treat `none`, `shared pair`, and `per-dataset tuned` label use as different claims.
-4. Flag full-set vs subset contradictions.
-5. Prefer a protocol ledger or revision map for claim provenance.
-6. Require every important number to map to a stable artifact or table.
-7. Separate deployable claims from sensitivity analysis.
-8. Ask cost reviewers for memory, latency, and route-ratio evidence.
-9. Require latency baselines to say what they are relative to.
-10. Compare CLIP-only, VLM-only, verifier-only, and routed variants when relevant.
-11. Diagnose negative cases as accuracy, cost, routing, prompt, or prior-reliability failures.
-12. Bound broader-use claims rather than promising open-ended generality.
-13. Detect local paths, logs, tool traces, and private experiment logistics.
-14. Detect teacher/advisor/AI/persona feedback leakage.
-15. Rewrite tactical AC/reviewer wording into public scientific claims.
-16. Inspect rendered PDF layout, not only source text.
-17. Treat large lower-column blanks as a persuasion risk, not only a formatting issue.
-18. Avoid endless polish once only P2 remains.
-19. Aggregate independent persona outputs before patching.
-20. Validate repo hygiene before release.
-
-## Release Validation
-
-Run the suite-level validator:
-
-```bash
-bash scripts/validate_suite.sh /path/to/rebuttal.tex FEoB,bCeM,y76H,MekP
-```
-
-Without an argument, it validates skills, role-prompt structure, anonymous fixtures, and repo hygiene.
-
-The validator includes regression fixtures: good examples must pass, while intentionally bad leak, claim, number, and persona-output examples must fail. This protects the suite from silently weakening over time.
-
-For a release package check:
-
-```bash
-python3 scripts/validate_release_package.py .
-```
-
-Build and validate a release archive:
-
-```bash
-RELEASE_OUT_DIR=/tmp/rebuttal-release bash scripts/build_release_archive.sh
-```
-
-## Stop Rule
-
-Stop editing when:
-
-- P0 issues are resolved.
-- P1 issues have concrete evidence, explicit bounds, or a deliberate non-fix rationale.
-- No internal/developer notes leak.
-- PDF is one page and has no obvious layout defects.
-- Remaining comments are P2 taste, harmless warnings, or subjective preference.
-
-## Release Hygiene
-
-Before publishing:
-
-```bash
-python3 ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/rebuttal-audit
-python3 ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/rebuttal-leak-audit
-python3 scripts/check_persona_outputs.py reviewer_roles
-python3 scripts/check_claim_ledger.py examples/anonymous_rebuttal.tex --ledger schemas/claim_ledger.example.csv
-python3 scripts/check_reported_numbers.py examples/anonymous_rebuttal.tex --numbers schemas/reported_numbers.example.csv
-python3 scripts/check_result_table.py examples/result_summary.csv --expect schemas/result_table_expectations.example.csv
-python3 scripts/check_reviewer_issue_map.py examples/issue_map_response_good.md --map schemas/reviewer_issue_map.example.csv --reviewers FEoB,bCeM,y76H,MekP --fail-on P1
-python3 scripts/check_rebuttal_tone.py examples/tone_good.md --fail-on P1
-python3 scripts/check_cost_evidence.py examples/cost_evidence_good.md --fail-on P1
-python3 scripts/check_revision_map.py examples/revision_map_good.tex --fail-on P1 --require-map
-python3 scripts/check_layout_readiness.py examples/layout_metrics_good.txt --fail-on P2
-python3 scripts/check_response_text.py examples/platform_response_good.md --reviewers FEoB,bCeM,y76H,MekP --require-reviewers --platform openreview --max-words 220 --max-chars 1500
-python3 scripts/check_revision_promises.py examples/revision_promises_good.md --fail-on P1
-python3 scripts/run_regression_fixtures.sh
-python3 scripts/validate_release_package.py .
-RELEASE_OUT_DIR=/tmp/rebuttal-release bash scripts/build_release_archive.sh
-python3 scripts/validate_repo_clean.py .
-```
-
-## Optional drafting and visual helper tools
-
-These helpers are advisory scaffolds for late-stage rebuttal work. They are useful before the final gate, but their output should still be inspected by a human author.
-
-### Draft a reviewer-issue map
+Draft a reviewer-issue map before hand-editing the CSV gate input:
 
 ```bash
 python3 scripts/generate_reviewer_issue_map.py reviews.md \
@@ -280,17 +137,7 @@ python3 scripts/generate_reviewer_issue_map.py reviews.md \
   --output reviewer_issue_map.draft.csv
 ```
 
-The generated CSV is a starting point for `scripts/check_reviewer_issue_map.py`; verify each response anchor, status, and evidence pointer before treating it as a gate input.
-
-### Check screenshot-style visual density
-
-```bash
-python3 scripts/check_pdf_visual_density.py rebuttal.pdf --fail-on P1
-```
-
-This rasterizes the first PDF page with `pdftoppm` when available and reports dense visual bands that can make compact tables look collapsed. It can also read key=value metrics fixtures such as `examples/visual_density_good.txt`.
-
-### Select a response-box budget preset
+Select conservative response-box budgets:
 
 ```bash
 python3 scripts/response_budget_presets.py --list
@@ -298,4 +145,88 @@ python3 scripts/response_budget_presets.py openreview-750w --args
 python3 scripts/response_budget_presets.py openreview-750w --shell
 ```
 
-Presets are conservative defaults for text-box workflows; always check the current submission instructions before treating a preset as binding.
+## Reviewer Persona Loop
+
+Use the role prompts as independent passes over the rendered PDF and source TeX:
+
+```text
+Use reviewer_roles/bCeM_protocol_cost.md to review rebuttal.pdf and rebuttal.tex.
+Find P0/P1/P2 issues first, then propose minimal fixes.
+```
+
+Recommended order:
+
+1. `reviewer_roles/bCeM_protocol_cost.md`
+2. `reviewer_roles/evidence_artifact_consistency.md`
+3. `reviewer_roles/FEoB_deployment_fairness.md`
+4. `reviewer_roles/MekP_threshold_attribution.md`
+5. `reviewer_roles/layout_submission_auditor.md`
+6. `reviewer_roles/y76H_supportive_clarity.md`
+7. `reviewer_roles/AC_synthesizer.md`
+
+After collecting persona outputs:
+
+```bash
+python3 scripts/aggregate_reviewer_feedback.py feedback_dir/
+python3 scripts/check_persona_outputs.py feedback_dir/
+```
+
+## Severity Standard
+
+| Severity | Meaning |
+| --- | --- |
+| `P0` | Factual contradiction, protocol ambiguity, label-use confusion, private leakage, evidence mismatch, or anything that can make the AC distrust the response. |
+| `P1` | Missing reviewer-specific evidence, cost/fairness/negative-case gap, unclear attribution, overclaiming, vague limitation promise, or a table/prose mismatch that weakens the rebuttal. |
+| `P2` | Density, wording, table polish, optional title/spacing, harmless warnings, or taste-level suggestions. |
+
+## Upgrade Patterns Encoded
+
+The current suite version encodes the main failure modes found across iterative rebuttal passes:
+
+- Separate strict results, diagnostics, calibrated analyses, deployable claims, sensitivity analysis, and negative-case diagnosis.
+- Require thresholds, fixed-pair claims, full-set/subset statements, and label-use modes to state scope.
+- Map important numbers, tables, reviewer concerns, cost claims, latency baselines, route ratios, revision promises, and limitation promises to auditable artifacts.
+- Detect local paths, logs, tool traces, private experiment logistics, teacher/advisor/AI/persona feedback leakage, and tactical reviewer wording.
+- Inspect rendered PDF layout, lower-column blanks, column-bottom balance, response-box safety, and screenshot-style visual density.
+- Stop once P0 issues are resolved, P1 issues have evidence or explicit bounds, and remaining comments are P2 polish.
+
+See [CHANGELOG.md](./CHANGELOG.md) for the version-by-version implementation history.
+
+## Release Validation
+
+Run the standard validation wrapper:
+
+```bash
+bash scripts/validate_suite.sh
+```
+
+Run package and repository hygiene checks:
+
+```bash
+python3 scripts/validate_release_package.py .
+python3 scripts/validate_repo_clean.py .
+```
+
+Build and validate a distributable archive:
+
+```bash
+RELEASE_OUT_DIR=/tmp/rebuttal-release bash scripts/build_release_archive.sh
+```
+
+The release archive is named `rebuttal-skill-suite-<VERSION>.tar.gz` under `RELEASE_OUT_DIR`. The build script extracts the archive and reruns release package validation, repo hygiene validation, skill validation, regression fixtures, and suite validation before printing `RELEASE_ARCHIVE_OK`.
+
+For the full preflight list, use [RELEASE_CHECKLIST.md](./RELEASE_CHECKLIST.md).
+
+## Stop Rule
+
+Stop editing a rebuttal when:
+
+- P0 issues are resolved.
+- P1 issues have concrete evidence, explicit bounds, or a deliberate non-fix rationale.
+- No internal/developer notes leak.
+- The PDF is one page and has no obvious layout defects.
+- Remaining comments are P2 taste, harmless warnings, or subjective preference.
+
+## License
+
+MIT. See [LICENSE](./LICENSE).

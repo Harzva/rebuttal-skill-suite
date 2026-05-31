@@ -29,7 +29,7 @@ copy_entry() {
 
 for entry in \
   README.md LICENSE VERSION CHANGELOG.md RELEASE_CHECKLIST.md Makefile .gitignore \
-  workflows prompts reviewer_roles schemas examples scripts skills .github; do
+  docs workflows prompts reviewer_roles schemas examples scripts skills .github; do
   copy_entry "$entry"
 done
 
