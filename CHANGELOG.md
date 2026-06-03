@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.23.0
+
+Anonymized dashboard preview pass.
+
+- Added a lightweight static `webview/` dashboard prototype with sanitized sample data for issue coverage, reviewer anchors, and gate status.
+- Added `scripts/render_dashboard_views.py` to generate README-safe SVG previews under `docs/images/`.
+- Documented the anonymous dashboard views in README while preserving the rule that real paper names, local paths, reviewer identities, and project-specific numbers do not belong in reusable suite demos.
+- Extended release validation to include `.html`, `.json`, and `.svg` public files so dashboard assets are scanned for project-specific leakage.
+
+## 0.22.0
+
+Escaped-percent claim/number ledger and temp-output hygiene pass.
+
+- Fixed claim-ledger and reported-number normalization so escaped LaTeX percentages such as `\%` are preserved instead of truncating the rest of the source line.
+- Applied the same escaped-percent preservation to the rebuttal tone checker and suppressed the bounded guardrail phrase `never cited as no-label evidence`.
+- Updated the anonymous regression fixture so claim/number checks must pass through percentage-heavy LaTeX result sentences.
+- Switched suite validation and regression fixtures from fixed `/tmp/rebuttal_suite_*.out` paths to private `mktemp` output directories, avoiding root-owned stale temp-file failures.
+- Added `REBUTTAL_CLAIM_WINDOW` to the main gate and moved its pdflatex output to a private temporary directory.
+- Disabled Python bytecode writes in validation/gate wrappers so release-clean checks do not fail on self-generated `__pycache__` directories.
+- Updated README and audit-skill guidance so project-specific claim and number ledgers can safely audit percentage-heavy one-page rebuttals.
+
 ## 0.21.0
 
 Reviewer-map drafting, visual-density, and response-budget helper pass.
@@ -54,7 +75,7 @@ Limitation-promise specificity pass.
 
 - Added explicit detection for limitation, failure-mode, weak-case, and future-work promises that lack a concrete revised-paper location.
 - Added good and bad fixtures for `we will state this limitation...` style promises.
-- Updated README, workflow, audit-skill guidance, and AC/FEoB personas so limitation promises name the paragraph, section, caption, appendix, or artifact where the bound becomes auditable.
+- Updated README, workflow, audit-skill guidance, and AC/deployment-fairness personas so limitation promises name the paragraph, section, caption, appendix, or artifact where the bound becomes auditable.
 - Preserved the generic promise checker while making negative-case and limitation feedback more actionable for reviewer-facing repair.
 
 ## 0.15.0

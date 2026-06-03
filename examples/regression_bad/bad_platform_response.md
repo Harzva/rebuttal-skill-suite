@@ -1,4 +1,4 @@
-We thank FEoB and bCeM for the feedback. TODO: add the remaining reviewer replies.
+We thank R2 and R1 for the feedback. TODO: add the remaining reviewer replies.
 
 \vspace{2mm}
 

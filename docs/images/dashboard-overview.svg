@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  
+  <style>
+    .bg{fill:#f5f6f8}.panel{fill:#fff;stroke:#d7dde5;stroke-width:1}
+    .ink{fill:#202833}.muted{fill:#657180}.green{fill:#0b6b3a}.red{fill:#9b1c1c}.blue{fill:#245d8f}.amber{fill:#8a5a00}
+    .soft-green{fill:#e8f4ee}.soft-red{fill:#f7e5e5}.soft-blue{fill:#e9eff7}.soft-amber{fill:#fff4d6}.line{stroke:#d7dde5;stroke-width:1}
+    text{font-family:Inter,Arial,sans-serif}.title{font-size:26px;font-weight:800}.h{font-size:16px;font-weight:800}.body{font-size:13px}.small{font-size:11px;font-weight:700}.stat{font-size:24px;font-weight:900}
+  </style>
+
+  <rect width="1200" height="760" class="bg"/>
+  <text x="36" y="48" class="title ink">Dashboard Preview: Overview</text>
+  <text x="36" y="72" class="body muted">Anonymous demo data; no paper names, local paths, or real reviewer IDs.</text>
+  <line x1="36" y1="96" x2="1164" y2="96" class="line"/>
+  <rect x="36" y="122" width="260" height="92" rx="8" class="panel"/>
+  <text x="54" y="166" class="stat ink">4</text>
+  <text x="54" y="190" class="small muted">Reviewers</text>
+  <rect x="322" y="122" width="260" height="92" rx="8" class="panel"/>
+  <text x="340" y="166" class="stat ink">6</text>
+  <text x="340" y="190" class="small muted">Issue Cards</text>
+  <rect x="608" y="122" width="260" height="92" rx="8" class="panel"/>
+  <text x="626" y="166" class="stat ink">0</text>
+  <text x="626" y="190" class="small muted">P0 Open</text>
+  <rect x="894" y="122" width="260" height="92" rx="8" class="panel"/>
+  <text x="912" y="166" class="stat ink">2</text>
+  <text x="912" y="190" class="small muted">P1 Watch</text>
+  <rect x="36" y="244" width="545" height="270" rx="8" class="panel"/>
+  <text x="58" y="282" class="h ink">Gate Timeline</text>
+  <rect x="58" y="306" width="88" height="24" rx="12" class="soft-green"/><text x="68" y="322" class="small green">Leak pass</text>
+  <rect x="160" y="306" width="102" height="24" rx="12" class="soft-green"/><text x="170" y="322" class="small green">Claims pass</text>
+  <rect x="276" y="306" width="112" height="24" rx="12" class="soft-green"/><text x="286" y="322" class="small green">Numbers pass</text>
+  <rect x="402" y="306" width="92" height="24" rx="12" class="soft-amber"/><text x="412" y="322" class="small amber">Layout watch</text>
+  <line x1="58" y1="362" x2="540" y2="362" class="line"/>
+  <text x="58" y="398" class="body ink">The dashboard is advisory: it visualizes gate outputs and issue coverage.</text>
+  <text x="58" y="424" class="body muted">It does not replace claim, number, leak, or layout checks.</text>
+  <rect x="615" y="244" width="549" height="270" rx="8" class="panel"/>
+  <text x="637" y="282" class="h ink">Coverage Summary</text>
+  <text x="637" y="326" class="body ink">R1: protocol clarity and table semantics covered.</text>
+  <text x="637" y="358" class="body ink">R2: attribution, cost, and baseline-family evidence covered.</text>
+  <text x="637" y="390" class="body ink">R3: weak cases and deployment boundaries covered.</text>
+  <text x="637" y="422" class="body ink">R4: revision-map and wording auditability covered.</text>
+  <text x="637" y="468" class="body muted">All labels and numbers here are anonymized examples.</text>
+  <rect x="36" y="548" width="1128" height="108" rx="8" class="panel"/>
+  <text x="58" y="586" class="h ink">Sanitization Contract</text>
+  <text x="58" y="620" class="body ink">Use reviewer IDs like R1/R2/R3/R4, method placeholders, and generic metric names in public demos.</text>
+</svg>

@@ -3,3 +3,5 @@ We thank the reviewers for identifying places where the protocol and cost eviden
 For the negative cases, we will state which outcomes reflect accuracy limits, routing sensitivity, prompt sensitivity, or proposal-prior misses. These revisions bound the claim without changing the evaluation protocol.
 
 The submitted manuscript did not clearly separate the deployable protocol from calibrated analysis. The method does not assume the proposal model is always reliable; the revised limitation will state where this prior can fail.
+
+The revision guardrail says calibrated rows are never cited as no-label evidence, and the compact table reports 68.85\% before stating the revised caption location.

@@ -1,4 +1,4 @@
-# FEoB Persona: Deployment, Fairness, Negative Cases
+# R2 Persona: Deployment, Fairness, Negative Cases
 
 Act as a knowledgeable reviewer who likes the idea but needs practical clarity before increasing confidence.
 

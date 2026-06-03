@@ -22,6 +22,8 @@ REQUIRED_PATHS = [
     "scripts/install_skills.sh",
     "scripts/build_release_archive.sh",
     "scripts/run_rebuttal_gates.sh",
+    "scripts/start_dashboard.sh",
+    "scripts/render_dashboard_views.py",
     "scripts/aggregate_reviewer_feedback.py",
     "scripts/check_claim_ledger.py",
     "scripts/check_reported_numbers.py",
@@ -45,6 +47,11 @@ REQUIRED_PATHS = [
     "schemas/reported_numbers.example.csv",
     "schemas/result_table_expectations.example.csv",
     "schemas/reviewer_issue_map.example.csv",
+    "webview/index.html",
+    "webview/sample_dashboard_data.json",
+    "docs/images/dashboard-overview.svg",
+    "docs/images/dashboard-issue-board.svg",
+    "docs/images/dashboard-reviewer-map.svg",
     "examples/anonymous_rebuttal.tex",
     "examples/result_summary.csv",
     "examples/issue_map_response_good.md",
@@ -58,10 +65,11 @@ REQUIRED_PATHS = [
     "examples/revision_promises_good.md",
 ]
 
-PUBLIC_EXTS = {".md", ".tex", ".txt", ".csv", ".yaml", ".yml", ".py", ".sh"}
+PUBLIC_EXTS = {".md", ".tex", ".txt", ".csv", ".yaml", ".yml", ".py", ".sh", ".html", ".json", ".svg"}
 PRIVATE_PATTERNS = [
-    re.compile(r"/home/clashuser|/home/[^.\s]+/G2D|G2D/", re.I),
+    re.compile(r"/home/clashuser|/home/[^.\s]+/G2D|G2D/|\bG2D\b", re.I),
     re.compile(r"ACMMM|mm2026|qwen|Qwen", re.I),
+    re.compile(r"\b(FEoB|bCeM|MekP|y76H)\b"),
     re.compile(r"老师|导师|改分|开发者备注"),
     re.compile(r"\b(AC-facing|borderline expert|dangerous reviewer|score increase)\b", re.I),
 ]

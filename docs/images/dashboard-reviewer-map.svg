@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  
+  <style>
+    .bg{fill:#f5f6f8}.panel{fill:#fff;stroke:#d7dde5;stroke-width:1}
+    .ink{fill:#202833}.muted{fill:#657180}.green{fill:#0b6b3a}.red{fill:#9b1c1c}.blue{fill:#245d8f}.amber{fill:#8a5a00}
+    .soft-green{fill:#e8f4ee}.soft-red{fill:#f7e5e5}.soft-blue{fill:#e9eff7}.soft-amber{fill:#fff4d6}.line{stroke:#d7dde5;stroke-width:1}
+    text{font-family:Inter,Arial,sans-serif}.title{font-size:26px;font-weight:800}.h{font-size:16px;font-weight:800}.body{font-size:13px}.small{font-size:11px;font-weight:700}.stat{font-size:24px;font-weight:900}
+  </style>
+
+  <rect width="1200" height="760" class="bg"/>
+  <text x="36" y="48" class="title ink">Dashboard Preview: Reviewer Map</text>
+  <text x="36" y="72" class="body muted">A compact matrix checks whether each reviewer has visible response anchors.</text>
+  <line x1="36" y1="96" x2="1164" y2="96" class="line"/>
+  <rect x="36" y="124" width="1128" height="470" rx="8" class="panel"/>
+  <text x="58" y="164" class="h ink">Reviewer-Issue Matrix</text>
+  <line x1="58" y1="188" x2="1142" y2="188" class="line"/>
+  <text x="58" y="224" class="small muted">Reviewer</text>
+  <text x="230" y="224" class="small muted">Stance</text>
+  <text x="430" y="224" class="small muted">Anchors</text>
+  <text x="680" y="224" class="small muted">Concern Cluster</text>
+  <line x1="58" y1="220" x2="1142" y2="220" class="line"/>
+  <text x="58" y="252" class="h ink">R1</text>
+  <rect x="230" y="232" width="112" height="24" rx="12" class="soft-blue"/><text x="240" y="248" class="small blue">supportive</text>
+  <text x="430" y="252" class="body ink">I1, I5, I6</text>
+  <text x="680" y="252" class="body ink">Protocol and table semantics</text>
+  <line x1="58" y1="298" x2="1142" y2="298" class="line"/>
+  <text x="58" y="330" class="h ink">R2</text>
+  <rect x="230" y="310" width="112" height="24" rx="12" class="soft-blue"/><text x="240" y="326" class="small blue">skeptical</text>
+  <text x="430" y="330" class="body ink">I1, I2, I3, I5, I6</text>
+  <text x="680" y="330" class="body ink">Attribution, cost, and baseline-family evidence</text>
+  <line x1="58" y1="376" x2="1142" y2="376" class="line"/>
+  <text x="58" y="408" class="h ink">R3</text>
+  <rect x="230" y="388" width="112" height="24" rx="12" class="soft-blue"/><text x="240" y="404" class="small blue">concerned</text>
+  <text x="430" y="408" class="body ink">I3, I4, I5, I6</text>
+  <text x="680" y="408" class="body ink">Weak cases and deployment boundaries</text>
+  <line x1="58" y1="454" x2="1142" y2="454" class="line"/>
+  <text x="58" y="486" class="h ink">R4</text>
+  <rect x="230" y="466" width="112" height="24" rx="12" class="soft-blue"/><text x="240" y="482" class="small blue">supportive</text>
+  <text x="430" y="486" class="body ink">I5, I6</text>
+  <text x="680" y="486" class="body ink">Revision map and final wording auditability</text>
+  <rect x="36" y="626" width="1128" height="72" rx="8" class="panel"/>
+  <text x="58" y="668" class="body muted">Public README previews should use anonymized IDs and generic concern clusters.</text>
+</svg>

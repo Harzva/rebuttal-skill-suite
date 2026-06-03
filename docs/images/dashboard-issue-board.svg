@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  
+  <style>
+    .bg{fill:#f5f6f8}.panel{fill:#fff;stroke:#d7dde5;stroke-width:1}
+    .ink{fill:#202833}.muted{fill:#657180}.green{fill:#0b6b3a}.red{fill:#9b1c1c}.blue{fill:#245d8f}.amber{fill:#8a5a00}
+    .soft-green{fill:#e8f4ee}.soft-red{fill:#f7e5e5}.soft-blue{fill:#e9eff7}.soft-amber{fill:#fff4d6}.line{stroke:#d7dde5;stroke-width:1}
+    text{font-family:Inter,Arial,sans-serif}.title{font-size:26px;font-weight:800}.h{font-size:16px;font-weight:800}.body{font-size:13px}.small{font-size:11px;font-weight:700}.stat{font-size:24px;font-weight:900}
+  </style>
+
+  <rect width="1200" height="760" class="bg"/>
+  <text x="36" y="48" class="title ink">Dashboard Preview: Issue Board</text>
+  <text x="36" y="72" class="body muted">Each card maps reviewer concerns to evidence and risk boundaries.</text>
+  <line x1="36" y1="96" x2="1164" y2="96" class="line"/>
+  <rect x="36" y="128" width="546" height="200" rx="8" class="panel"/>
+  <text x="56" y="164" class="h ink">I1: Protocol Separation</text>
+  <rect x="56" y="182" width="54" height="24" rx="12" class="soft-red"/><text x="66" y="198" class="small red">P0</text>
+  <rect x="120" y="182" width="92" height="24" rx="12" class="soft-green"/><text x="130" y="198" class="small green">answered</text>
+  <text x="56" y="240" class="body ink">Separate deployable claims from calibrated diagnostics.</text>
+  <text x="56" y="280" class="body muted">Risk: Do not cite calibrated rows as no-label evidence.</text>
+  <rect x="618" y="128" width="546" height="200" rx="8" class="panel"/>
+  <text x="638" y="164" class="h ink">I2: Mechanism Attribution</text>
+  <rect x="638" y="182" width="54" height="24" rx="12" class="soft-blue"/><text x="648" y="198" class="small blue">P1</text>
+  <rect x="702" y="182" width="92" height="24" rx="12" class="soft-green"/><text x="712" y="198" class="small green">answered</text>
+  <text x="638" y="240" class="body ink">Show same-model baseline, verifier-only row, and routed row.</text>
+  <text x="638" y="280" class="body muted">Risk: Do not overclaim compute-identical fairness.</text>
+  <rect x="36" y="360" width="546" height="200" rx="8" class="panel"/>
+  <text x="56" y="396" class="h ink">I3: Cost Evidence</text>
+  <rect x="56" y="414" width="54" height="24" rx="12" class="soft-blue"/><text x="66" y="430" class="small blue">P1</text>
+  <rect x="120" y="414" width="92" height="24" rx="12" class="soft-amber"/><text x="130" y="430" class="small amber">watch</text>
+  <text x="56" y="472" class="body ink">Report memory class, latency baseline, and route ratio.</text>
+  <text x="56" y="512" class="body muted">Risk: Avoid universal speedup language.</text>
+  <rect x="618" y="360" width="546" height="200" rx="8" class="panel"/>
+  <text x="638" y="396" class="h ink">I4: Weak Cases</text>
+  <rect x="638" y="414" width="54" height="24" rx="12" class="soft-blue"/><text x="648" y="430" class="small blue">P1</text>
+  <rect x="702" y="414" width="92" height="24" rx="12" class="soft-green"/><text x="712" y="430" class="small green">answered</text>
+  <text x="638" y="472" class="body ink">Diagnose routing, prompt, and prior-reliability boundaries.</text>
+  <text x="638" y="512" class="body muted">Risk: Do not invent new evidence.</text>
+</svg>

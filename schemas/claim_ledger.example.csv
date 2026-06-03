@@ -1,6 +1,6 @@
 id,pattern,required_near,forbidden_near,severity,must_find,note
-strict_main,"g2d.*1\s*theta","strict|deployable;fixed|label-free|no labels|zero-shot","per-dataset|test-set tuning",P1,true,"Main claim should be deployable and label-free."
+strict_main,"method[- ]a.*1\s*theta","strict|deployable;fixed|label-free|no labels|zero-shot","per-dataset|test-set tuning",P1,true,"Main claim should be deployable and label-free."
 fixed_pair,"fixed[- ]pair","full|subset|diagnostic|shared pair|scope;label use|shared pair|no per-dataset","per-dataset tuned|test-set tuning",P0,true,"Fixed-pair claims need explicit scope and label-use status."
-calibrated,"g2d.*2\s*theta","calibrated|diagnostic|sensitivity|not main|outside strict","main claim|deployable main",P1,true,"Calibrated rows should not become the main claim."
+calibrated,"method[- ]a.*2\s*theta","calibrated|diagnostic|sensitivity|not main|outside strict","main claim|deployable main",P1,true,"Calibrated rows should not become the main claim."
 cost,"cost|latency|runtime","memory|mem;route;vs|relative to|baseline","",P1,true,"Cost evidence should be scannable and name the latency baseline."
 negative_case,"negative|weak case|failure","accuracy|cost|routing|prompt|prior|reliability|sensitivity","",P2,false,"Weak cases should be diagnosed, not waved away."

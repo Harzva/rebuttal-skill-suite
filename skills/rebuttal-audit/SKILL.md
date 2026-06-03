@@ -74,7 +74,7 @@ High-risk checks:
 - If the rebuttal has many reviewer concerns, run an issue-map check to catch omitted or only implicit answers.
 - If the rebuttal is near final, run a tone check so strong evidence is not weakened by defensive or overclaiming phrasing.
 - If the rebuttal contains revision promises, run a promise check so broad commitments do not replace auditable evidence.
-- In percentage-heavy LaTeX paragraphs, ensure promise checks preserve escaped percentages such as `\%`; an escaped result number must not be treated as the start of a source comment.
+- In percentage-heavy LaTeX paragraphs, ensure claim, number, and promise checks preserve escaped percentages such as `\%`; an escaped result number must not be treated as the start of a source comment.
 - Treat `we will state this limitation` as incomplete unless it identifies the revised-paper location where the limitation, failure mode, or future-work boundary will be auditable.
 - For compact revision-map tables, audit each row independently: a `Where` cell in one row must not be used to excuse an unauditable promise in another row.
 
@@ -152,7 +152,7 @@ python3 /root/.codex/skills/rebuttal-audit/scripts/audit_rebuttal.py \
   --tex path/to/rebuttal.tex \
   --pdf path/to/rebuttal.pdf \
   --log path/to/rebuttal.log \
-  --reviewers FEoB,bCeM,y76H,MekP \
+  --reviewers R1,R2,R3,R4 \
   --min-tail-words 7 \
   --min-tail-fill 0.80
 ```
@@ -165,6 +165,7 @@ For paper-specific consistency checks, run a claim ledger:
 python3 /path/to/rebuttal-skill-suite/scripts/check_claim_ledger.py \
   path/to/rebuttal.tex \
   --ledger path/to/claim_ledger.csv \
+  --window 520 \
   --fail-on P0
 ```
 
@@ -176,6 +177,8 @@ python3 /path/to/rebuttal-skill-suite/scripts/check_reported_numbers.py \
   --numbers path/to/reported_numbers.csv \
   --fail-on P0
 ```
+
+In LaTeX rebuttals, escaped percentages such as `68.85\%` must be preserved by claim and number checks so the rest of the same source line remains auditable.
 
 For structured result-table checks:
 
@@ -198,7 +201,7 @@ python3 /path/to/rebuttal-skill-suite/scripts/generate_reviewer_issue_map.py \
 python3 /path/to/rebuttal-skill-suite/scripts/check_reviewer_issue_map.py \
   path/to/rebuttal.tex \
   --map path/to/reviewer_issue_map.csv \
-  --reviewers FEoB,bCeM,y76H,MekP \
+  --reviewers R1,R2,R3,R4 \
   --fail-on P1
 ```
 
@@ -245,7 +248,7 @@ python3 /path/to/rebuttal-skill-suite/scripts/response_budget_presets.py openrev
 
 python3 /path/to/rebuttal-skill-suite/scripts/check_response_text.py \
   path/to/final_response.md \
-  --reviewers FEoB,bCeM,y76H,MekP \
+  --reviewers R1,R2,R3,R4 \
   --require-reviewers \
   --platform openreview \
   --max-words 750 \

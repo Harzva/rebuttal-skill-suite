@@ -28,9 +28,23 @@ class Finding:
     note: str
 
 
+def strip_latex_comments(text: str) -> str:
+    """Remove LaTeX comments while preserving escaped percent signs."""
+    stripped_lines = []
+    for line in text.splitlines():
+        out = []
+        for idx, char in enumerate(line):
+            if char == "%" and (idx == 0 or line[idx - 1] != "\\"):
+                break
+            out.append(char)
+        stripped_lines.append("".join(out))
+    return "\n".join(stripped_lines)
+
+
 def normalize_latex(text: str) -> str:
+    text = strip_latex_comments(text)
+    text = text.replace("\\%", " percent ")
     text = text.replace("\\theta", "theta").replace("θ", "theta").replace("Θ", "theta")
-    text = re.sub(r"%.*", " ", text)
     text = re.sub(r"\\[a-zA-Z]+\*?(?:\[[^\]]*\])?(?:\{([^{}]*)\})?", r" \1 ", text)
     text = re.sub(r"[{}$]", " ", text)
     text = re.sub(r"\s+", " ", text)

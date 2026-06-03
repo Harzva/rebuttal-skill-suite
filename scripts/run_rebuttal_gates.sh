@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PYTHONDONTWRITEBYTECODE="${PYTHONDONTWRITEBYTECODE:-1}"
 
 if [[ $# -lt 1 ]]; then
   echo "Usage: $0 /path/to/rebuttal.tex [reviewer_ids_csv]" >&2
@@ -7,7 +8,7 @@ if [[ $# -lt 1 ]]; then
 fi
 
 TEX_PATH="$1"
-REVIEWERS="${2:-FEoB,bCeM,y76H,MekP}"
+REVIEWERS="${2:-R1,R2,R3,R4}"
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 TEX_DIR="$(cd "$(dirname "$TEX_PATH")" && pwd)"
 TEX_FILE="$(basename "$TEX_PATH")"
@@ -19,6 +20,7 @@ MIN_TAIL_WORDS="${REBUTTAL_MIN_TAIL_WORDS:-7}"
 MIN_TAIL_FILL="${REBUTTAL_MIN_TAIL_FILL:-0.80}"
 CLAIM_LEDGER="${REBUTTAL_CLAIM_LEDGER:-}"
 CLAIM_FAIL_ON="${REBUTTAL_CLAIM_FAIL_ON:-P0}"
+CLAIM_WINDOW="${REBUTTAL_CLAIM_WINDOW:-220}"
 NUMBER_LEDGER="${REBUTTAL_NUMBER_LEDGER:-}"
 NUMBER_FAIL_ON="${REBUTTAL_NUMBER_FAIL_ON:-P0}"
 RESULT_TABLE="${REBUTTAL_RESULT_TABLE:-}"
@@ -49,9 +51,12 @@ LAYOUT_READINESS_CHECK="${REBUTTAL_LAYOUT_READINESS_CHECK:-1}"
 LAYOUT_READINESS_FAIL_ON="${REBUTTAL_LAYOUT_READINESS_FAIL_ON:-P0}"
 
 cd "$TEX_DIR"
-if ! pdflatex -interaction=nonstopmode -halt-on-error -file-line-error "$TEX_FILE" >/tmp/rebuttal_gate_pdflatex.log 2>&1; then
-  echo "PDFLATEX_FAILED: see /tmp/rebuttal_gate_pdflatex.log" >&2
-  tail -n 40 /tmp/rebuttal_gate_pdflatex.log >&2 || true
+TMP_OUT_DIR="$(mktemp -d)"
+trap 'rm -rf "$TMP_OUT_DIR"' EXIT
+PDFLATEX_LOG="$TMP_OUT_DIR/pdflatex.log"
+if ! pdflatex -interaction=nonstopmode -halt-on-error -file-line-error "$TEX_FILE" >"$PDFLATEX_LOG" 2>&1; then
+  echo "PDFLATEX_FAILED: see $PDFLATEX_LOG" >&2
+  tail -n 40 "$PDFLATEX_LOG" >&2 || true
   exit 1
 fi
 
@@ -69,7 +74,7 @@ if [[ "$LAYOUT_READINESS_CHECK" != "0" ]]; then
 fi
 
 if [[ -n "$CLAIM_LEDGER" ]]; then
-  python3 "$ROOT_DIR/scripts/check_claim_ledger.py" "$TEX_PATH" --ledger "$CLAIM_LEDGER" --fail-on "$CLAIM_FAIL_ON"
+  python3 "$ROOT_DIR/scripts/check_claim_ledger.py" "$TEX_PATH" --ledger "$CLAIM_LEDGER" --window "$CLAIM_WINDOW" --fail-on "$CLAIM_FAIL_ON"
 fi
 
 if [[ -n "$NUMBER_LEDGER" ]]; then

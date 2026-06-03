@@ -13,6 +13,7 @@ Before publishing this repository:
 - Run `scripts/check_rebuttal_tone.py` before final submission to catch defensive, overclaiming, casual, or strategy-like wording.
 - Run `scripts/check_response_text.py` on the final pasted response when submitting through OpenReview, CMT, or a plain text box.
 - Run `scripts/check_revision_promises.py` when the response contains `we will add/clarify/report/update` revision commitments.
+- Run `scripts/render_dashboard_views.py` when README dashboard preview assets may have changed.
 - Run `scripts/run_regression_fixtures.sh` to ensure known bad examples fail.
 - Run `scripts/validate_suite.sh` before tagging.
 - Run `scripts/validate_release_package.py .`.
@@ -28,23 +29,24 @@ Validation commands:
 ```bash
 python3 ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/rebuttal-audit
 python3 ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/rebuttal-leak-audit
-bash scripts/run_rebuttal_gates.sh /path/to/rebuttal.tex FEoB,bCeM,y76H,MekP
+bash scripts/run_rebuttal_gates.sh /path/to/rebuttal.tex R1,R2,R3,R4
 python3 scripts/aggregate_reviewer_feedback.py reviewer_roles
 python3 scripts/check_persona_outputs.py reviewer_roles
 python3 scripts/check_claim_ledger.py examples/anonymous_rebuttal.tex --ledger schemas/claim_ledger.example.csv
 python3 scripts/check_reported_numbers.py examples/anonymous_rebuttal.tex --numbers schemas/reported_numbers.example.csv
 python3 scripts/check_result_table.py examples/result_summary.csv --expect schemas/result_table_expectations.example.csv
-python3 scripts/check_reviewer_issue_map.py examples/issue_map_response_good.md --map schemas/reviewer_issue_map.example.csv --reviewers FEoB,bCeM,y76H,MekP --fail-on P1
+python3 scripts/check_reviewer_issue_map.py examples/issue_map_response_good.md --map schemas/reviewer_issue_map.example.csv --reviewers R1,R2,R3,R4 --fail-on P1
 python3 scripts/check_rebuttal_tone.py examples/tone_good.md --fail-on P1
-python3 scripts/check_response_text.py examples/platform_response_good.md --reviewers FEoB,bCeM,y76H,MekP --require-reviewers --platform openreview --max-words 220 --max-chars 1500
+python3 scripts/check_response_text.py examples/platform_response_good.md --reviewers R1,R2,R3,R4 --require-reviewers --platform openreview --max-words 220 --max-chars 1500
 python3 scripts/check_revision_promises.py examples/revision_promises_good.md --fail-on P1
+python3 scripts/render_dashboard_views.py
 python3 scripts/run_regression_fixtures.sh
 python3 scripts/validate_release_package.py .
 RELEASE_OUT_DIR=/tmp/rebuttal-release bash scripts/build_release_archive.sh
-REBUTTAL_CLAIM_LEDGER=schemas/claim_ledger.example.csv bash scripts/run_rebuttal_gates.sh /path/to/rebuttal.tex FEoB,bCeM,y76H,MekP
-REBUTTAL_NUMBER_LEDGER=schemas/reported_numbers.example.csv bash scripts/run_rebuttal_gates.sh /path/to/rebuttal.tex FEoB,bCeM,y76H,MekP
-REBUTTAL_RESULT_TABLE=examples/result_summary.csv REBUTTAL_RESULT_EXPECTATIONS=schemas/result_table_expectations.example.csv bash scripts/run_rebuttal_gates.sh /path/to/rebuttal.tex FEoB,bCeM,y76H,MekP
-bash scripts/validate_suite.sh /path/to/rebuttal.tex FEoB,bCeM,y76H,MekP
+REBUTTAL_CLAIM_LEDGER=schemas/claim_ledger.example.csv bash scripts/run_rebuttal_gates.sh /path/to/rebuttal.tex R1,R2,R3,R4
+REBUTTAL_NUMBER_LEDGER=schemas/reported_numbers.example.csv bash scripts/run_rebuttal_gates.sh /path/to/rebuttal.tex R1,R2,R3,R4
+REBUTTAL_RESULT_TABLE=examples/result_summary.csv REBUTTAL_RESULT_EXPECTATIONS=schemas/result_table_expectations.example.csv bash scripts/run_rebuttal_gates.sh /path/to/rebuttal.tex R1,R2,R3,R4
+bash scripts/validate_suite.sh /path/to/rebuttal.tex R1,R2,R3,R4
 bash scripts/install_skills.sh --check
 python3 scripts/validate_repo_clean.py .
 ```

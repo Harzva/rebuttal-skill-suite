@@ -1,7 +1,7 @@
 .PHONY: validate regression clean-check install check-install package-check table-check issue-map-check tone-check response-check promise-check archive
 
 REBUTTAL_TEX ?=
-REVIEWERS ?= FEoB,bCeM,y76H,MekP
+REVIEWERS ?= R1,R2,R3,R4
 CODEX_HOME ?= $(HOME)/.codex
 
 validate:

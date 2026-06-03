@@ -78,7 +78,15 @@ class Finding:
 
 
 def strip_latex_noise(text: str) -> str:
-    text = re.sub(r"%.*", "", text)
+    stripped_lines = []
+    for line in text.splitlines():
+        out = []
+        for idx, char in enumerate(line):
+            if char == "%" and (idx == 0 or line[idx - 1] != "\\"):
+                break
+            out.append(char)
+        stripped_lines.append("".join(out))
+    text = "\n".join(stripped_lines).replace("\\%", " percent ")
     return LATEX_COMMAND_RE.sub(lambda m: m.group(1) or " ", text)
 
 
@@ -107,7 +115,12 @@ def should_suppress_match(code: str, sentence: str, match: re.Match[str]) -> boo
     if code != "absolute-overclaim":
         return False
     prefix = sentence[max(0, match.start() - 80) : match.start()]
-    return bool(ABSOLUTE_NEGATION_RE.search(prefix))
+    suffix = sentence[match.start() : match.end() + 120]
+    if ABSOLUTE_NEGATION_RE.search(prefix):
+        return True
+    if re.search(r"\bnever\s+cited\s+as\s+no-label\s+evidence\b", suffix, flags=re.I):
+        return True
+    return False
 
 
 def check_tone(path: Path) -> list[Finding]:

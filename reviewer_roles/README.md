@@ -4,12 +4,12 @@ Use these prompts as separate critique passes over the rendered PDF and source T
 
 Recommended order:
 
-1. `bCeM_protocol_cost.md`
+1. `protocol_cost_reviewer.md`
 2. `evidence_artifact_consistency.md`
-3. `FEoB_deployment_fairness.md`
-4. `MekP_threshold_attribution.md`
+3. `deployment_fairness_reviewer.md`
+4. `threshold_attribution_reviewer.md`
 5. `layout_submission_auditor.md`
-6. `y76H_supportive_clarity.md`
+6. `supportive_clarity_reviewer.md`
 7. `AC_synthesizer.md`
 
 Each role must output:

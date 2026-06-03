@@ -1,0 +1,109 @@
+{
+  "title": "Anonymous Rebuttal Coverage Dashboard",
+  "subtitle": "Sanitized demo data for a reusable rebuttal audit workflow",
+  "generated_at": "demo",
+  "stats": [
+    {"label": "Reviewers", "value": "4"},
+    {"label": "Issue Cards", "value": "6"},
+    {"label": "P0 Open", "value": "0"},
+    {"label": "P1 Watch", "value": "2"}
+  ],
+  "reviewers": [
+    {
+      "id": "R1",
+      "stance": "Supportive but wants protocol clarity.",
+      "concerns": ["label use", "fixed settings", "table semantics"]
+    },
+    {
+      "id": "R2",
+      "stance": "Skeptical about attribution and cost.",
+      "concerns": ["baseline fairness", "runtime evidence", "claim scope"]
+    },
+    {
+      "id": "R3",
+      "stance": "Concerned about weak cases and broader use.",
+      "concerns": ["failure boundary", "deployment shift", "negative cases"]
+    },
+    {
+      "id": "R4",
+      "stance": "Supportive but wants the revision plan to be auditable.",
+      "concerns": ["revision map", "evidence pointers", "final wording"]
+    }
+  ],
+  "issues": [
+    {
+      "id": "I1",
+      "title": "Protocol Separation",
+      "theme": "Protocol",
+      "reviewers": ["R1", "R2"],
+      "severity": "P0",
+      "status": "answered",
+      "summary": "Separate deployable claims from calibrated diagnostics.",
+      "evidence": ["Main row is fixed and label-free.", "Calibrated row is marked as sensitivity only."],
+      "risk": "Do not cite calibrated rows as no-label evidence."
+    },
+    {
+      "id": "I2",
+      "title": "Mechanism Attribution",
+      "theme": "Evidence",
+      "reviewers": ["R2"],
+      "severity": "P1",
+      "status": "answered",
+      "summary": "Show that the gain is not only from a stronger component.",
+      "evidence": ["Same-model baseline.", "Verifier-only row.", "Routed row."],
+      "risk": "Do not overclaim compute-identical fairness."
+    },
+    {
+      "id": "I3",
+      "title": "Cost Evidence",
+      "theme": "Cost",
+      "reviewers": ["R2", "R3"],
+      "severity": "P1",
+      "status": "watch",
+      "summary": "Report memory class, latency baseline, and route ratio.",
+      "evidence": ["Proposal-only.", "Model-only.", "Verifier-only.", "Routed."],
+      "risk": "Frame as accuracy-cost trade-off, not universal speedup."
+    },
+    {
+      "id": "I4",
+      "title": "Weak Cases",
+      "theme": "Limits",
+      "reviewers": ["R3"],
+      "severity": "P1",
+      "status": "answered",
+      "summary": "Diagnose negative cases without inventing new evidence.",
+      "evidence": ["Routing sensitivity.", "Prompt sensitivity.", "Prior reliability."],
+      "risk": "Avoid speculative domain-specific fixes."
+    },
+    {
+      "id": "I5",
+      "title": "Revision Promises",
+      "theme": "Auditability",
+      "reviewers": ["R1", "R2", "R3", "R4"],
+      "severity": "P1",
+      "status": "answered",
+      "summary": "Each promise names a table, caption, appendix, or artifact.",
+      "evidence": ["Protocol summary table.", "Cost comparison.", "Limitations paragraph."],
+      "risk": "Do not leave broad 'we will improve' promises."
+    },
+    {
+      "id": "I6",
+      "title": "Leak and Tone Gate",
+      "theme": "Safety",
+      "reviewers": ["R1", "R2", "R3", "R4"],
+      "severity": "P0",
+      "status": "answered",
+      "summary": "Remove internal notes, local paths, and reviewer-strategy language.",
+      "evidence": ["Leak audit.", "Tone audit.", "Pasted-response audit."],
+      "risk": "Keep dashboard data anonymized before sharing."
+    }
+  ],
+  "gate_runs": [
+    {"gate": "Leak", "result": "pass", "detail": "0 high-risk leaks"},
+    {"gate": "Claims", "result": "pass", "detail": "claim ledger OK"},
+    {"gate": "Numbers", "result": "pass", "detail": "reported-number ledger OK"},
+    {"gate": "Cost", "result": "pass", "detail": "all baseline families covered"},
+    {"gate": "Tone", "result": "pass", "detail": "no P1 tone findings"},
+    {"gate": "Layout", "result": "watch", "detail": "inspect final PDF visually"}
+  ]
+}
