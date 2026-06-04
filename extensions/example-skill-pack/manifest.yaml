@@ -1,0 +1,20 @@
+name: example_skill_pack
+version: 0.1.0
+description: Copyable extension pack for domain-specific rebuttal prompts, checks, schemas, and fixtures.
+extension_types:
+  - prompt
+  - checker
+  - schema
+prompts:
+  - prompts/domain_reviewer.md
+checks:
+  - checks/check_domain_claims.py
+schemas:
+  - schemas/domain_claims.example.csv
+fixtures:
+  - fixtures/good.md
+  - fixtures/bad.md
+validation_commands:
+  - python3 checks/check_domain_claims.py fixtures/good.md --fail-on P1
+  - '! python3 checks/check_domain_claims.py fixtures/bad.md --fail-on P1'
+severity_default_fail_on: P1

@@ -44,7 +44,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-SKILLS=(rebuttal-audit rebuttal-leak-audit)
+SKILLS=(rebuttal-audit rebuttal-leak-audit rebuttal-dashboard-data)
 TARGET_ROOT="$CODEX_HOME_DIR/skills"
 
 for skill in "${SKILLS[@]}"; do

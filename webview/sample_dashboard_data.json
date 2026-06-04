@@ -1,109 +1,83 @@
 {
-  "title": "Anonymous Rebuttal Coverage Dashboard",
-  "subtitle": "Sanitized demo data for a reusable rebuttal audit workflow",
-  "generated_at": "demo",
-  "stats": [
-    {"label": "Reviewers", "value": "4"},
-    {"label": "Issue Cards", "value": "6"},
-    {"label": "P0 Open", "value": "0"},
-    {"label": "P1 Watch", "value": "2"}
-  ],
-  "reviewers": [
-    {
-      "id": "R1",
-      "stance": "Supportive but wants protocol clarity.",
-      "concerns": ["label use", "fixed settings", "table semantics"]
-    },
-    {
-      "id": "R2",
-      "stance": "Skeptical about attribution and cost.",
-      "concerns": ["baseline fairness", "runtime evidence", "claim scope"]
-    },
-    {
-      "id": "R3",
-      "stance": "Concerned about weak cases and broader use.",
-      "concerns": ["failure boundary", "deployment shift", "negative cases"]
-    },
-    {
-      "id": "R4",
-      "stance": "Supportive but wants the revision plan to be auditable.",
-      "concerns": ["revision map", "evidence pointers", "final wording"]
-    }
+  "title": "Anonymous Rebuttal Dashboard",
+  "subtitle": "Sanitized demo data for an evidence-backed rebuttal review loop",
+  "generated_at": "2026-06-04",
+  "branch": "codex/dashboard-preview",
+  "sync_status": "ahead 1",
+  "project": "Rebuttal Project (Anonymized)",
+  "summary": {
+    "issues_total": 48,
+    "resolved": 23,
+    "open": 21,
+    "p0_blocking": 3,
+    "score": 82,
+    "score_label": "Good",
+    "reviewer_coverage": 87,
+    "reviewers_covered": 4,
+    "reviewers_total": 4,
+    "evidence_mapped": 38,
+    "evidence_total": 48,
+    "gate_passed": 7,
+    "gate_total": 8
+  },
+  "quick_actions": [
+    {"label": "New Issue", "hint": "Add a reviewer concern card"},
+    {"label": "Run Leak Audit", "hint": "bash scripts/run_rebuttal_gates.sh rebuttal.tex R1,R2,R3,R4"},
+    {"label": "Check Gates", "hint": "bash scripts/validate_suite.sh"},
+    {"label": "Generate Report", "hint": "python3 scripts/render_dashboard_views.py"}
   ],
   "issues": [
-    {
-      "id": "I1",
-      "title": "Protocol Separation",
-      "theme": "Protocol",
-      "reviewers": ["R1", "R2"],
-      "severity": "P0",
-      "status": "answered",
-      "summary": "Separate deployable claims from calibrated diagnostics.",
-      "evidence": ["Main row is fixed and label-free.", "Calibrated row is marked as sensitivity only."],
-      "risk": "Do not cite calibrated rows as no-label evidence."
-    },
-    {
-      "id": "I2",
-      "title": "Mechanism Attribution",
-      "theme": "Evidence",
-      "reviewers": ["R2"],
-      "severity": "P1",
-      "status": "answered",
-      "summary": "Show that the gain is not only from a stronger component.",
-      "evidence": ["Same-model baseline.", "Verifier-only row.", "Routed row."],
-      "risk": "Do not overclaim compute-identical fairness."
-    },
-    {
-      "id": "I3",
-      "title": "Cost Evidence",
-      "theme": "Cost",
-      "reviewers": ["R2", "R3"],
-      "severity": "P1",
-      "status": "watch",
-      "summary": "Report memory class, latency baseline, and route ratio.",
-      "evidence": ["Proposal-only.", "Model-only.", "Verifier-only.", "Routed."],
-      "risk": "Frame as accuracy-cost trade-off, not universal speedup."
-    },
-    {
-      "id": "I4",
-      "title": "Weak Cases",
-      "theme": "Limits",
-      "reviewers": ["R3"],
-      "severity": "P1",
-      "status": "answered",
-      "summary": "Diagnose negative cases without inventing new evidence.",
-      "evidence": ["Routing sensitivity.", "Prompt sensitivity.", "Prior reliability."],
-      "risk": "Avoid speculative domain-specific fixes."
-    },
-    {
-      "id": "I5",
-      "title": "Revision Promises",
-      "theme": "Auditability",
-      "reviewers": ["R1", "R2", "R3", "R4"],
-      "severity": "P1",
-      "status": "answered",
-      "summary": "Each promise names a table, caption, appendix, or artifact.",
-      "evidence": ["Protocol summary table.", "Cost comparison.", "Limitations paragraph."],
-      "risk": "Do not leave broad 'we will improve' promises."
-    },
-    {
-      "id": "I6",
-      "title": "Leak and Tone Gate",
-      "theme": "Safety",
-      "reviewers": ["R1", "R2", "R3", "R4"],
-      "severity": "P0",
-      "status": "answered",
-      "summary": "Remove internal notes, local paths, and reviewer-strategy language.",
-      "evidence": ["Leak audit.", "Tone audit.", "Pasted-response audit."],
-      "risk": "Keep dashboard data anonymized before sharing."
-    }
+    {"id": "ISS-001", "title": "Protocol separation", "theme": "Protocol", "reviewers": ["R1", "R2"], "severity": "P0", "status": "blocking", "summary": "Separate deployable claims from calibrated diagnostics.", "evidence": ["Fixed protocol row", "Sensitivity-only row"], "risk": "Do not cite calibrated rows as no-label evidence."},
+    {"id": "ISS-002", "title": "Private process leakage", "theme": "Safety", "reviewers": ["R1", "R2", "R3", "R4"], "severity": "P0", "status": "blocking", "summary": "Remove local paths, AI/tool traces, and strategy wording before public submission.", "evidence": ["Leak audit", "Tone audit"], "risk": "Private workflow details can make the AC distrust the response."},
+    {"id": "ISS-003", "title": "Unbounded deployment claim", "theme": "Scope", "reviewers": ["R2", "R3"], "severity": "P0", "status": "blocking", "summary": "Constrain deployment language to the evaluated protocol and named baselines.", "evidence": ["Limitations paragraph", "Cost ledger"], "risk": "Avoid production-ready claims without deployment evidence."},
+    {"id": "ISS-010", "title": "Cost evidence", "theme": "Cost", "reviewers": ["R2", "R3"], "severity": "P1", "status": "watch", "summary": "Report memory class, latency baseline, and route ratio.", "evidence": ["Cost comparison", "Route-ratio row"], "risk": "Frame as an accuracy-cost trade-off, not universal speedup."},
+    {"id": "ISS-011", "title": "Mechanism attribution", "theme": "Evidence", "reviewers": ["R2"], "severity": "P1", "status": "watch", "summary": "Show that the gain is not only from a stronger component.", "evidence": ["Same-model baseline", "Verifier-only row", "Routed row"], "risk": "Do not overclaim compute-identical fairness."},
+    {"id": "ISS-012", "title": "Revision promises", "theme": "Auditability", "reviewers": ["R1", "R2", "R3", "R4"], "severity": "P1", "status": "watch", "summary": "Each promise names a table, caption, appendix, or artifact.", "evidence": ["Revision map", "Reviewer issue map"], "risk": "Avoid broad 'we will improve' promises."},
+    {"id": "ISS-020", "title": "Weak-case framing", "theme": "Limits", "reviewers": ["R3"], "severity": "P2", "status": "open", "summary": "Diagnose negative cases without inventing new evidence.", "evidence": ["Routing sensitivity", "Prompt sensitivity"], "risk": "Keep fixes conservative and scoped."},
+    {"id": "ISS-021", "title": "Table-caption clarity", "theme": "Layout", "reviewers": ["R1", "R4"], "severity": "P2", "status": "open", "summary": "Make strict, diagnostic, and sensitivity rows visually distinct.", "evidence": ["Caption draft", "Result table"], "risk": "Dense captions can blur protocol boundaries."},
+    {"id": "ISS-030", "title": "Reviewer coverage map", "theme": "Coverage", "reviewers": ["R1", "R2", "R3", "R4"], "severity": "P1", "status": "resolved", "summary": "All reviewer-specific objections have visible response anchors.", "evidence": ["Issue map", "Response text audit"], "risk": "Keep reviewer IDs anonymized in public demos."},
+    {"id": "ISS-031", "title": "Final response box", "theme": "Submission", "reviewers": ["R4"], "severity": "P2", "status": "resolved", "summary": "Check platform word and character budgets before paste-in submission.", "evidence": ["Response budget preset", "Platform text checker"], "risk": "Avoid unsupported LaTeX commands in final text boxes."}
+  ],
+  "reviewers": [
+    {"id": "R1", "stance": "Supportive but wants protocol clarity.", "covered": true, "coverage": 92, "concerns": ["label use", "fixed settings", "table semantics"], "anchors": ["ISS-001", "ISS-021", "ISS-030"]},
+    {"id": "R2", "stance": "Skeptical about attribution and cost.", "covered": true, "coverage": 88, "concerns": ["baseline fairness", "runtime evidence", "claim scope"], "anchors": ["ISS-001", "ISS-003", "ISS-010", "ISS-011", "ISS-030"]},
+    {"id": "R3", "stance": "Concerned about weak cases and broader use.", "covered": true, "coverage": 84, "concerns": ["failure boundary", "deployment shift", "negative cases"], "anchors": ["ISS-003", "ISS-010", "ISS-020", "ISS-030"]},
+    {"id": "R4", "stance": "Wants the revision plan to be auditable.", "covered": true, "coverage": 76, "concerns": ["revision map", "evidence pointers", "final wording"], "anchors": ["ISS-012", "ISS-021", "ISS-030", "ISS-031"]}
+  ],
+  "risk_history": [
+    {"date": "D-6", "P0": 7, "P1": 16, "P2": 18, "resolved": 8},
+    {"date": "D-5", "P0": 6, "P1": 14, "P2": 17, "resolved": 11},
+    {"date": "D-4", "P0": 5, "P1": 13, "P2": 15, "resolved": 15},
+    {"date": "D-3", "P0": 4, "P1": 11, "P2": 13, "resolved": 18},
+    {"date": "D-2", "P0": 4, "P1": 9, "P2": 11, "resolved": 20},
+    {"date": "D-1", "P0": 3, "P1": 8, "P2": 10, "resolved": 22},
+    {"date": "Now", "P0": 3, "P1": 8, "P2": 10, "resolved": 23}
+  ],
+  "evidence_map": [
+    {"name": "Claim ledger", "mapped": 18, "total": 24, "status": "watch"},
+    {"name": "Number ledger", "mapped": 9, "total": 9, "status": "pass"},
+    {"name": "Result table", "mapped": 7, "total": 8, "status": "watch"},
+    {"name": "Reviewer issue map", "mapped": 10, "total": 10, "status": "pass"},
+    {"name": "Revision promises", "mapped": 5, "total": 6, "status": "watch"}
   ],
   "gate_runs": [
-    {"gate": "Leak", "result": "pass", "detail": "0 high-risk leaks"},
-    {"gate": "Claims", "result": "pass", "detail": "claim ledger OK"},
-    {"gate": "Numbers", "result": "pass", "detail": "reported-number ledger OK"},
-    {"gate": "Cost", "result": "pass", "detail": "all baseline families covered"},
-    {"gate": "Tone", "result": "pass", "detail": "no P1 tone findings"},
-    {"gate": "Layout", "result": "watch", "detail": "inspect final PDF visually"}
+    {"gate": "Leak Audit", "result": "pass", "detail": "0 high-risk leaks"},
+    {"gate": "Evidence Map", "result": "pass", "detail": "claim and number ledgers are linked"},
+    {"gate": "Reviewer Map", "result": "pass", "detail": "4/4 reviewers covered"},
+    {"gate": "P0/P1 Risk", "result": "watch", "detail": "3 P0 cards still blocking in demo data"},
+    {"gate": "Tone", "result": "pass", "detail": "no defensive or tactical wording"},
+    {"gate": "Layout", "result": "watch", "detail": "inspect final rendered PDF visually"},
+    {"gate": "Response Text", "result": "pass", "detail": "platform-safe response text"},
+    {"gate": "Dashboard Preview", "result": "pass", "detail": "README views regenerated from anonymized data"}
+  ],
+  "report_exports": [
+    {"format": "PDF", "status": "preview", "description": "Reviewer-facing summary should still be manually checked."},
+    {"format": "CSV", "status": "ready", "description": "Issue and evidence maps are safe for internal audit."},
+    {"format": "MD", "status": "ready", "description": "Markdown report can be pasted into team notes."}
+  ],
+  "notes": [
+    "Risk trend is anonymized demo data, not a live historical telemetry feed.",
+    "README previews are regenerated from this dashboard data so public screenshots match the shipped webview.",
+    "Reviewer IDs, method names, local paths, and project-specific numbers are deliberately anonymized."
   ]
 }

@@ -1,0 +1,3 @@
+claim_id,claim_text,scope,evidence_anchor,reviewer_anchor,severity_if_missing
+C1,"The main response separates deployable claims from sensitivity diagnostics.","fixed protocol only","Table 1; Appendix A","R1;R2",P0
+C2,"The cost statement is framed as an accuracy-cost trade-off.","reported baseline families only","Cost comparison paragraph","R2;R3",P1

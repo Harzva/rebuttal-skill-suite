@@ -1,0 +1,30 @@
+{
+  "title": "Private Rebuttal Dashboard",
+  "subtitle": "Local dashboard data generated from project files",
+  "generated_at": "YYYY-MM-DD",
+  "branch": "unknown",
+  "sync_status": "local snapshot",
+  "project": "Private Project",
+  "summary": {
+    "issues_total": 0,
+    "resolved": 0,
+    "open": 0,
+    "p0_blocking": 0,
+    "score": 0,
+    "score_label": "Unknown",
+    "reviewer_coverage": 0,
+    "reviewers_covered": 0,
+    "reviewers_total": 0,
+    "evidence_mapped": 0,
+    "evidence_total": 0,
+    "gate_passed": 0,
+    "gate_total": 0
+  },
+  "issues": [],
+  "reviewers": [],
+  "risk_history": [],
+  "evidence_map": [],
+  "gate_runs": [],
+  "report_exports": [],
+  "notes": []
+}

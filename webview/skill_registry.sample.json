@@ -1,0 +1,107 @@
+{
+  "title": "Rebuttal Skill Suite Control Center",
+  "generated_at": "2026-06-04 12:31:03",
+  "repo_version": "0.23.0",
+  "codex_home_display": "~/.codex",
+  "counts": {
+    "skills_total": 3,
+    "skills_synced": 0,
+    "skills_missing": 0,
+    "skills_drift": 0,
+    "extensions_total": 1,
+    "extensions_present": 1
+  },
+  "skills": [
+    {
+      "name": "rebuttal-audit",
+      "directory": "rebuttal-audit",
+      "description": "Audit one-page academic rebuttals for reviewer coverage, evidence support, layout readiness, and final submission clarity.",
+      "repo_status": "available",
+      "install_status": "sample",
+      "installed_display": "~/.codex/skills/<skill>",
+      "commands": [
+        "bash scripts/install_skills.sh",
+        "bash scripts/install_skills.sh --check"
+      ]
+    },
+    {
+      "name": "rebuttal-dashboard-data",
+      "directory": "rebuttal-dashboard-data",
+      "description": "Build private and sanitized dashboard data from rebuttal projects, ledgers, gates, and reviewer issue maps.",
+      "repo_status": "available",
+      "install_status": "sample",
+      "installed_display": "~/.codex/skills/<skill>",
+      "commands": [
+        "bash scripts/install_skills.sh",
+        "bash scripts/install_skills.sh --check"
+      ]
+    },
+    {
+      "name": "rebuttal-leak-audit",
+      "directory": "rebuttal-leak-audit",
+      "description": "Check public-facing rebuttal drafts for accidental private-process exposure and reviewer-facing wording risks.",
+      "repo_status": "available",
+      "install_status": "sample",
+      "installed_display": "~/.codex/skills/<skill>",
+      "commands": [
+        "bash scripts/install_skills.sh",
+        "bash scripts/install_skills.sh --check"
+      ]
+    }
+  ],
+  "extensions": [
+    {
+      "name": "example_skill_pack",
+      "directory": "example-skill-pack",
+      "version": "0.1.0",
+      "description": "Copyable extension pack for domain-specific rebuttal prompts, checks, schemas, and fixtures.",
+      "extension_types": [
+        "prompt",
+        "checker",
+        "schema"
+      ],
+      "status": "present",
+      "commands": [
+        "python3 scripts/validate_extensions.py"
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "label": "Install skills",
+      "command": "bash scripts/install_skills.sh",
+      "kind": "mutating"
+    },
+    {
+      "label": "Check installed skills",
+      "command": "bash scripts/install_skills.sh --check",
+      "kind": "read-only"
+    },
+    {
+      "label": "Validate extensions",
+      "command": "python3 scripts/validate_extensions.py",
+      "kind": "read-only"
+    },
+    {
+      "label": "Validate suite",
+      "command": "bash scripts/validate_suite.sh",
+      "kind": "long-running"
+    },
+    {
+      "label": "Build project dashboard data",
+      "command": "python3 scripts/build_dashboard_data.py --reviews reviews.md --rebuttal rebuttal.tex",
+      "kind": "private-data"
+    }
+  ],
+  "server_preview": {
+    "script": "python3 scripts/serve_dashboard.py",
+    "safe_default": "Serves static dashboard and read-only registry refresh endpoints on 127.0.0.1.",
+    "actions_flag": "Use --enable-actions to allow controlled POST endpoints for install/check/validate commands."
+  },
+  "notes": [
+    "Skill registry data describes suite capabilities and local installation status; it does not include paper, review, or rebuttal content.",
+    "Installed paths are displayed with a home-relative prefix to avoid exposing full local paths.",
+    "Static dashboard buttons show safe commands; use the local server with explicit actions for executable controls.",
+    "This is public sample registry data; local install status may differ on your machine."
+  ]
+}

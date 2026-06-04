@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Rebuttal Skill Suite Dashboard Data",
+  "type": "object",
+  "required": ["title", "subtitle", "generated_at", "summary", "issues", "reviewers", "gate_runs", "notes"],
+  "properties": {
+    "title": {"type": "string"},
+    "subtitle": {"type": "string"},
+    "generated_at": {"type": "string"},
+    "branch": {"type": "string"},
+    "sync_status": {"type": "string"},
+    "project": {"type": "string"},
+    "summary": {"type": "object"},
+    "quick_actions": {"type": "array", "items": {"type": "object"}},
+    "issues": {"type": "array", "items": {"type": "object"}},
+    "reviewers": {"type": "array", "items": {"type": "object"}},
+    "risk_history": {"type": "array", "items": {"type": "object"}},
+    "evidence_map": {"type": "array", "items": {"type": "object"}},
+    "gate_runs": {"type": "array", "items": {"type": "object"}},
+    "report_exports": {"type": "array", "items": {"type": "object"}},
+    "notes": {"type": "array", "items": {"type": "string"}},
+    "access_issues": {"type": "array", "items": {"type": "string"}}
+  }
+}

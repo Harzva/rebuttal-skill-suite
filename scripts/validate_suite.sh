@@ -10,12 +10,14 @@ export PYTHONDONTWRITEBYTECODE=1
 cd "$ROOT_DIR"
 python3 "$QUICK_VALIDATE" skills/rebuttal-audit
 python3 "$QUICK_VALIDATE" skills/rebuttal-leak-audit
+python3 "$QUICK_VALIDATE" skills/rebuttal-dashboard-data
 TMP_CODEX_HOME="$(mktemp -d)"
 TMP_OUT_DIR="$(mktemp -d)"
 trap 'rm -rf "$TMP_CODEX_HOME" "$TMP_OUT_DIR"' EXIT
 bash scripts/install_skills.sh --codex-home "$TMP_CODEX_HOME" >"$TMP_OUT_DIR/install.out"
 python3 "$QUICK_VALIDATE" "$TMP_CODEX_HOME/skills/rebuttal-audit"
 python3 "$QUICK_VALIDATE" "$TMP_CODEX_HOME/skills/rebuttal-leak-audit"
+python3 "$QUICK_VALIDATE" "$TMP_CODEX_HOME/skills/rebuttal-dashboard-data"
 python3 scripts/check_persona_outputs.py reviewer_roles
 python3 scripts/aggregate_reviewer_feedback.py examples/persona_feedback >"$TMP_OUT_DIR/aggregate.md"
 python3 scripts/check_claim_ledger.py examples/anonymous_rebuttal.tex --ledger schemas/claim_ledger.example.csv --fail-on P0
@@ -32,6 +34,7 @@ python3 scripts/response_budget_presets.py openreview-750w --shell >"$TMP_OUT_DI
 python3 scripts/check_response_text.py examples/platform_response_good.md --reviewers R1,R2,R3,R4 --require-reviewers --platform openreview --max-words 220 --max-chars 1500 --fail-on P0
 python3 scripts/check_revision_promises.py examples/revision_promises_good.md --fail-on P1
 python3 scripts/render_dashboard_views.py >"$TMP_OUT_DIR/dashboard_views.out"
+python3 scripts/validate_extensions.py
 bash scripts/run_regression_fixtures.sh
 python3 scripts/validate_release_package.py .
 python3 scripts/validate_repo_clean.py .

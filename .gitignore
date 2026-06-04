@@ -12,3 +12,6 @@ __pycache__/
 *.blg
 .DS_Store
 .pytest_cache/
+.local/
+webview/dashboard_data.local.json
+webview/skill_registry.local.json

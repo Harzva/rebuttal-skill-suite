@@ -46,25 +46,32 @@ flowchart LR
 
 | Area | Paths | Purpose |
 | --- | --- | --- |
-| Codex skills | `skills/rebuttal-audit/`, `skills/rebuttal-leak-audit/` | One-page rebuttal audit and public-leak audit workflows. |
+| Codex skills | `skills/rebuttal-audit/`, `skills/rebuttal-leak-audit/`, `skills/rebuttal-dashboard-data/` | One-page rebuttal audit, public-leak audit, and dashboard-data workflows. |
 | Reviewer roles | `reviewer_roles/` | Independent reviewer, AC, layout, artifact-consistency, protocol/cost, and fairness passes. |
 | End-to-end workflow | `workflows/adversarial_rebuttal_loop.md` | The closed-loop iteration protocol. |
-| Dashboard preview | `webview/`, `docs/images/`, `scripts/start_dashboard.sh`, `scripts/render_dashboard_views.py` | Anonymous local issue-coverage board plus README-safe SVG previews. |
+| Dashboard preview | `webview/`, `docs/images/`, `scripts/start_dashboard.sh`, `scripts/render_dashboard_views.py` | Skill-suite control center, anonymous issue-coverage board, and README-safe SVG previews. |
+| Skill registry pipeline | `scripts/build_skill_registry_data.py`, `webview/skill_registry.sample.json` | Local Codex skill install status, repo skill inventory, extension-pack summary, and safe command handoff. |
+| Dashboard data pipeline | `scripts/build_dashboard_data.py`, `scripts/sanitize_dashboard_data.py`, `.local/dashboard_data.json` | Private project snapshots, static-webview refresh data, and sanitized public samples. |
 | Upgrade prompt | `prompts/upgrade_skill_suite.md` | Paste-ready prompt for extending the suite from real rebuttal lessons. |
 | Mechanical gates | `scripts/run_rebuttal_gates.sh`, `scripts/validate_suite.sh` | Compile, leak, layout, content, schema, dashboard, and regression validation wrappers. |
 | Optional ledgers | `schemas/*.example.csv` | Claim, number, result-table, and reviewer-issue map schemas. |
 | Regression fixtures | `examples/` | Anonymous good examples and intentionally bad fixtures used by validation scripts. |
+| Extension interface | `extensions/`, `scripts/create_extension.sh`, `scripts/validate_extensions.py` | Copyable skill-pack contract for project-specific prompts, checkers, schemas, fixtures, and validation commands. |
 | Release tooling | `scripts/build_release_archive.sh`, `scripts/validate_release_package.py`, `scripts/validate_repo_clean.py` | Build and verify a clean distributable archive. |
 
 ## Anonymized Dashboard Preview
 
-The suite includes a lightweight static webview for visual inspection of issue coverage, reviewer anchors, and gate status. The bundled data and README images are deliberately anonymized: reviewer IDs are `R1/R2/R3/R4`, methods are generic, and no paper names, local paths, real reviewer identifiers, or project-specific numbers are included.
+The suite includes a lightweight static webview for visual inspection of issue coverage, reviewer anchors, evidence mapping, risk trend previews, gate status, and report handoff state. The bundled data and README images are deliberately anonymized: reviewer IDs are `R1/R2/R3/R4`, methods are generic, and no paper names, local paths, real reviewer identifiers, or project-specific numbers are included.
+
+README dashboard previews are regenerated from `webview/sample_dashboard_data.json` by `scripts/render_dashboard_views.py`, so public screenshots stay aligned with the shipped webview modules rather than showing roadmap-only UI.
 
 ![Anonymous dashboard overview](docs/images/dashboard-overview.svg)
 
 ![Anonymous issue board](docs/images/dashboard-issue-board.svg)
 
 ![Anonymous reviewer map](docs/images/dashboard-reviewer-map.svg)
+
+![Anonymous risk and gate status](docs/images/dashboard-risk-gates.svg)
 
 Run the local demo:
 
@@ -73,6 +80,98 @@ bash scripts/start_dashboard.sh
 ```
 
 Then open `http://127.0.0.1:7864/`. Treat this dashboard as an internal control surface; reviewer-facing content should still go through the leak, claim, number, tone, cost, revision-map, response-text, and layout gates.
+
+The webview loads `webview/dashboard_data.local.json` first when it exists, then falls back to `webview/sample_dashboard_data.json`. The local file is ignored by Git, so private project data can drive the dashboard without replacing the public demo.
+
+The `Skill Suite` view loads `webview/skill_registry.local.json` first when it exists, then falls back to `webview/skill_registry.sample.json`. This view manages repository skills and local Codex installation status only; it does not include paper, reviewer, or rebuttal content.
+
+Build local skill-suite registry data:
+
+```bash
+python3 scripts/build_skill_registry_data.py
+```
+
+This reports whether repo skills such as `rebuttal-audit`, `rebuttal-leak-audit`, and `rebuttal-dashboard-data` are missing, synced, or drifted under the local Codex skills directory. Displayed install paths are home-relative rather than full absolute paths.
+
+For the first local-management server prototype:
+
+```bash
+python3 scripts/serve_dashboard.py
+```
+
+The server binds to `127.0.0.1`, serves the same webview, and exposes read-only management APIs for refreshing the skill registry, checking installed skills, and validating extensions. Mutating or long-running actions are disabled by default. To allow controlled install and suite-validation endpoints, restart explicitly:
+
+```bash
+python3 scripts/serve_dashboard.py --enable-actions
+```
+
+## Build Private Dashboard Data
+
+Use the dashboard-data skill or the mechanical builder to turn project files into a local dashboard snapshot:
+
+```bash
+python3 scripts/build_dashboard_data.py \
+  --project-root /path/to/project \
+  --paper /path/to/paper.tex \
+  --rebuttal /path/to/rebuttal.tex \
+  --reviews /path/to/reviews.md \
+  --reviewer-issue-map /path/to/reviewer_issue_map.csv \
+  --claim-ledger /path/to/claim_ledger.csv \
+  --number-ledger /path/to/reported_numbers.csv \
+  --gate-output /path/to/gate_output.txt
+```
+
+By default this writes:
+
+```text
+.local/dashboard_data.json
+webview/dashboard_data.local.json
+```
+
+Click `Refresh` in the webview after rebuilding data. The Refresh button reloads the latest JSON; it does not execute local scripts from the browser.
+
+If reviews or ledgers are missing, the builder records access issues instead of inventing coverage. If only one snapshot exists, the dashboard shows a current-snapshot note rather than a fake seven-day trend.
+
+Create a public sanitized sample only after the private dashboard looks correct:
+
+```bash
+python3 scripts/sanitize_dashboard_data.py \
+  .local/dashboard_data.json \
+  webview/sample_dashboard_data.json \
+  --project-title "Anonymized Rebuttal Project"
+```
+
+Then regenerate README previews from the sanitized sample:
+
+```bash
+python3 scripts/render_dashboard_views.py
+```
+
+Private dashboard files are ignored by Git. Public sample data should contain only anonymized reviewer IDs, generic concern summaries, and public-safe evidence labels.
+
+## Extend the Suite
+
+Use `extensions/` to add project-specific rebuttal experience without editing the core scripts. Extensions can contribute reviewer prompts, domain checkers, CSV/TSV schemas, regression fixtures, and validation commands.
+
+Create a copyable extension pack:
+
+```bash
+bash scripts/create_extension.sh my-lab-rebuttal-rules
+```
+
+Validate all extension manifests, referenced files, and example validation commands:
+
+```bash
+python3 scripts/validate_extensions.py
+```
+
+The standard suite wrapper also runs extension validation:
+
+```bash
+bash scripts/validate_suite.sh
+```
+
+The extension contract is intentionally lightweight. Core suite behavior stays stable, while teams can add prompt extensions, checker extensions, and schema extensions under `extensions/` as their rebuttal lessons accumulate.
 
 ## Install Locally
 

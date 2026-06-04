@@ -1,43 +1,38 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
   
   <style>
-    .bg{fill:#f5f6f8}.panel{fill:#fff;stroke:#d7dde5;stroke-width:1}
-    .ink{fill:#202833}.muted{fill:#657180}.green{fill:#0b6b3a}.red{fill:#9b1c1c}.blue{fill:#245d8f}.amber{fill:#8a5a00}
-    .soft-green{fill:#e8f4ee}.soft-red{fill:#f7e5e5}.soft-blue{fill:#e9eff7}.soft-amber{fill:#fff4d6}.line{stroke:#d7dde5;stroke-width:1}
-    text{font-family:Inter,Arial,sans-serif}.title{font-size:26px;font-weight:800}.h{font-size:16px;font-weight:800}.body{font-size:13px}.small{font-size:11px;font-weight:700}.stat{font-size:24px;font-weight:900}
+    .bg{fill:#f7f3e8}.grid{stroke:#d9ded8;stroke-width:1;opacity:.45}.panel{fill:#fffdf7;stroke:#d7dde5;stroke-width:1}.ink{fill:#071324}.muted{fill:#647084}.green{fill:#16a34a}.red{fill:#ef4444}.orange{fill:#f97316}.amber{fill:#f59e0b}.blue{fill:#1479ff}.teal{fill:#00a88f}.soft-green{fill:#dcfce7}.soft-red{fill:#fee2e2}.soft-orange{fill:#ffedd5}.soft-amber{fill:#fef3c7}.soft-blue{fill:#dbeafe}.line{stroke:#d7dde5;stroke-width:1}.shadow{filter:drop-shadow(0 8px 12px rgba(15,23,42,.12))}
+    text{font-family:Avenir Next,Trebuchet MS,Arial,sans-serif}.title{font-size:30px;font-weight:900}.h{font-size:17px;font-weight:900}.body{font-size:13px}.small{font-size:11px;font-weight:800}.stat{font-size:28px;font-weight:900}.tiny{font-size:10px;font-weight:800}
   </style>
 
-  <rect width="1200" height="760" class="bg"/>
+  <rect width="1200" height="760" class="bg"/><line x1="0" y1="0" x2="0" y2="760" class="grid"/><line x1="28" y1="0" x2="28" y2="760" class="grid"/><line x1="56" y1="0" x2="56" y2="760" class="grid"/><line x1="84" y1="0" x2="84" y2="760" class="grid"/><line x1="112" y1="0" x2="112" y2="760" class="grid"/><line x1="140" y1="0" x2="140" y2="760" class="grid"/><line x1="168" y1="0" x2="168" y2="760" class="grid"/><line x1="196" y1="0" x2="196" y2="760" class="grid"/><line x1="224" y1="0" x2="224" y2="760" class="grid"/><line x1="252" y1="0" x2="252" y2="760" class="grid"/><line x1="280" y1="0" x2="280" y2="760" class="grid"/><line x1="308" y1="0" x2="308" y2="760" class="grid"/><line x1="336" y1="0" x2="336" y2="760" class="grid"/><line x1="364" y1="0" x2="364" y2="760" class="grid"/><line x1="392" y1="0" x2="392" y2="760" class="grid"/><line x1="420" y1="0" x2="420" y2="760" class="grid"/><line x1="448" y1="0" x2="448" y2="760" class="grid"/><line x1="476" y1="0" x2="476" y2="760" class="grid"/><line x1="504" y1="0" x2="504" y2="760" class="grid"/><line x1="532" y1="0" x2="532" y2="760" class="grid"/><line x1="560" y1="0" x2="560" y2="760" class="grid"/><line x1="588" y1="0" x2="588" y2="760" class="grid"/><line x1="616" y1="0" x2="616" y2="760" class="grid"/><line x1="644" y1="0" x2="644" y2="760" class="grid"/><line x1="672" y1="0" x2="672" y2="760" class="grid"/><line x1="700" y1="0" x2="700" y2="760" class="grid"/><line x1="728" y1="0" x2="728" y2="760" class="grid"/><line x1="756" y1="0" x2="756" y2="760" class="grid"/><line x1="784" y1="0" x2="784" y2="760" class="grid"/><line x1="812" y1="0" x2="812" y2="760" class="grid"/><line x1="840" y1="0" x2="840" y2="760" class="grid"/><line x1="868" y1="0" x2="868" y2="760" class="grid"/><line x1="896" y1="0" x2="896" y2="760" class="grid"/><line x1="924" y1="0" x2="924" y2="760" class="grid"/><line x1="952" y1="0" x2="952" y2="760" class="grid"/><line x1="980" y1="0" x2="980" y2="760" class="grid"/><line x1="1008" y1="0" x2="1008" y2="760" class="grid"/><line x1="1036" y1="0" x2="1036" y2="760" class="grid"/><line x1="1064" y1="0" x2="1064" y2="760" class="grid"/><line x1="1092" y1="0" x2="1092" y2="760" class="grid"/><line x1="1120" y1="0" x2="1120" y2="760" class="grid"/><line x1="1148" y1="0" x2="1148" y2="760" class="grid"/><line x1="1176" y1="0" x2="1176" y2="760" class="grid"/><line x1="0" y1="0" x2="1200" y2="0" class="grid"/><line x1="0" y1="28" x2="1200" y2="28" class="grid"/><line x1="0" y1="56" x2="1200" y2="56" class="grid"/><line x1="0" y1="84" x2="1200" y2="84" class="grid"/><line x1="0" y1="112" x2="1200" y2="112" class="grid"/><line x1="0" y1="140" x2="1200" y2="140" class="grid"/><line x1="0" y1="168" x2="1200" y2="168" class="grid"/><line x1="0" y1="196" x2="1200" y2="196" class="grid"/><line x1="0" y1="224" x2="1200" y2="224" class="grid"/><line x1="0" y1="252" x2="1200" y2="252" class="grid"/><line x1="0" y1="280" x2="1200" y2="280" class="grid"/><line x1="0" y1="308" x2="1200" y2="308" class="grid"/><line x1="0" y1="336" x2="1200" y2="336" class="grid"/><line x1="0" y1="364" x2="1200" y2="364" class="grid"/><line x1="0" y1="392" x2="1200" y2="392" class="grid"/><line x1="0" y1="420" x2="1200" y2="420" class="grid"/><line x1="0" y1="448" x2="1200" y2="448" class="grid"/><line x1="0" y1="476" x2="1200" y2="476" class="grid"/><line x1="0" y1="504" x2="1200" y2="504" class="grid"/><line x1="0" y1="532" x2="1200" y2="532" class="grid"/><line x1="0" y1="560" x2="1200" y2="560" class="grid"/><line x1="0" y1="588" x2="1200" y2="588" class="grid"/><line x1="0" y1="616" x2="1200" y2="616" class="grid"/><line x1="0" y1="644" x2="1200" y2="644" class="grid"/><line x1="0" y1="672" x2="1200" y2="672" class="grid"/><line x1="0" y1="700" x2="1200" y2="700" class="grid"/><line x1="0" y1="728" x2="1200" y2="728" class="grid"/><line x1="0" y1="756" x2="1200" y2="756" class="grid"/>
   <text x="36" y="48" class="title ink">Dashboard Preview: Reviewer Map</text>
-  <text x="36" y="72" class="body muted">A compact matrix checks whether each reviewer has visible response anchors.</text>
-  <line x1="36" y1="96" x2="1164" y2="96" class="line"/>
-  <rect x="36" y="124" width="1128" height="470" rx="8" class="panel"/>
-  <text x="58" y="164" class="h ink">Reviewer-Issue Matrix</text>
-  <line x1="58" y1="188" x2="1142" y2="188" class="line"/>
-  <text x="58" y="224" class="small muted">Reviewer</text>
-  <text x="230" y="224" class="small muted">Stance</text>
-  <text x="430" y="224" class="small muted">Anchors</text>
-  <text x="680" y="224" class="small muted">Concern Cluster</text>
-  <line x1="58" y1="220" x2="1142" y2="220" class="line"/>
-  <text x="58" y="252" class="h ink">R1</text>
-  <rect x="230" y="232" width="112" height="24" rx="12" class="soft-blue"/><text x="240" y="248" class="small blue">supportive</text>
-  <text x="430" y="252" class="body ink">I1, I5, I6</text>
-  <text x="680" y="252" class="body ink">Protocol and table semantics</text>
-  <line x1="58" y1="298" x2="1142" y2="298" class="line"/>
-  <text x="58" y="330" class="h ink">R2</text>
-  <rect x="230" y="310" width="112" height="24" rx="12" class="soft-blue"/><text x="240" y="326" class="small blue">skeptical</text>
-  <text x="430" y="330" class="body ink">I1, I2, I3, I5, I6</text>
-  <text x="680" y="330" class="body ink">Attribution, cost, and baseline-family evidence</text>
-  <line x1="58" y1="376" x2="1142" y2="376" class="line"/>
-  <text x="58" y="408" class="h ink">R3</text>
-  <rect x="230" y="388" width="112" height="24" rx="12" class="soft-blue"/><text x="240" y="404" class="small blue">concerned</text>
-  <text x="430" y="408" class="body ink">I3, I4, I5, I6</text>
-  <text x="680" y="408" class="body ink">Weak cases and deployment boundaries</text>
-  <line x1="58" y1="454" x2="1142" y2="454" class="line"/>
-  <text x="58" y="486" class="h ink">R4</text>
-  <rect x="230" y="466" width="112" height="24" rx="12" class="soft-blue"/><text x="240" y="482" class="small blue">supportive</text>
-  <text x="430" y="486" class="body ink">I5, I6</text>
-  <text x="680" y="486" class="body ink">Revision map and final wording auditability</text>
-  <rect x="36" y="626" width="1128" height="72" rx="8" class="panel"/>
-  <text x="58" y="668" class="body muted">Public README previews should use anonymized IDs and generic concern clusters.</text>
+  <text x="36" y="74" class="body muted">A compact matrix checks whether each reviewer has response anchors.</text>
+  <rect x="36" y="116" width="1128" height="520" rx="18" class="panel shadow"/>
+  <text x="58" y="154" class="h ink">Reviewer Coverage Map</text>
+  <circle cx="78" cy="216" r="24" fill="#d1fae5" stroke="#6ee7b7" stroke-width="3"/><text x="78" y="222" text-anchor="middle" class="small green">R1</text>
+  <text x="118" y="208" class="h ink">Supportive but wants protocol clarity.</text>
+  <text x="118" y="232" class="body muted">label use · fixed settings · table semantics</text>
+  <rect x="118" y="248" width="760" height="10" rx="5" fill="#e5e7eb"/><rect x="118" y="248" width="699" height="10" rx="5" fill="#00a88f"/>
+  <text x="910" y="256" class="h green">92%</text>
+  <text x="1000" y="256" class="small muted">ISS-001, ISS-021, ISS-030</text>
+  <circle cx="78" cy="320" r="24" fill="#d1fae5" stroke="#6ee7b7" stroke-width="3"/><text x="78" y="326" text-anchor="middle" class="small green">R2</text>
+  <text x="118" y="312" class="h ink">Skeptical about attribution and cost.</text>
+  <text x="118" y="336" class="body muted">baseline fairness · runtime evidence · claim scope</text>
+  <rect x="118" y="352" width="760" height="10" rx="5" fill="#e5e7eb"/><rect x="118" y="352" width="668" height="10" rx="5" fill="#00a88f"/>
+  <text x="910" y="360" class="h green">88%</text>
+  <text x="1000" y="360" class="small muted">ISS-001, ISS-003, ISS-010, ISS-011, ISS-030</text>
+  <circle cx="78" cy="424" r="24" fill="#d1fae5" stroke="#6ee7b7" stroke-width="3"/><text x="78" y="430" text-anchor="middle" class="small green">R3</text>
+  <text x="118" y="416" class="h ink">Concerned about weak cases and broader use.</text>
+  <text x="118" y="440" class="body muted">failure boundary · deployment shift · negative cases</text>
+  <rect x="118" y="456" width="760" height="10" rx="5" fill="#e5e7eb"/><rect x="118" y="456" width="638" height="10" rx="5" fill="#00a88f"/>
+  <text x="910" y="464" class="h green">84%</text>
+  <text x="1000" y="464" class="small muted">ISS-003, ISS-010, ISS-020, ISS-030</text>
+  <circle cx="78" cy="528" r="24" fill="#d1fae5" stroke="#6ee7b7" stroke-width="3"/><text x="78" y="534" text-anchor="middle" class="small green">R4</text>
+  <text x="118" y="520" class="h ink">Wants the revision plan to be auditable.</text>
+  <text x="118" y="544" class="body muted">revision map · evidence pointers · final wording</text>
+  <rect x="118" y="560" width="760" height="10" rx="5" fill="#e5e7eb"/><rect x="118" y="560" width="577" height="10" rx="5" fill="#00a88f"/>
+  <text x="910" y="568" class="h green">76%</text>
+  <text x="1000" y="568" class="small muted">ISS-012, ISS-021, ISS-030, ISS-031</text>
+  <text x="58" y="690" class="body muted">Reviewer IDs are anonymized; coverage means concerns have visible response anchors.</text>
 </svg>
