@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rebuttal Promo Image"
+  short_description: "Create README and XHS promo cards."
+  default_prompt: "Create a GitHub README banner and Xiaohongshu card for this rebuttal skill suite, then prepare safe publishing copy."

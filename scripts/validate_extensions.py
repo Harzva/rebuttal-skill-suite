@@ -27,7 +27,7 @@ def parse_manifest(path: Path) -> tuple[dict[str, str], dict[str, list[str]]]:
         if raw.startswith(" ") or raw.startswith("\t"):
             item = raw.strip()
             if item.startswith("- ") and current:
-                lists.setdefault(current, []).append(item[2:].strip().strip('"'))
+                lists.setdefault(current, []).append(item[2:].strip().strip("\"'"))
             continue
         current = None
         if raw.endswith(":"):
@@ -38,7 +38,7 @@ def parse_manifest(path: Path) -> tuple[dict[str, str], dict[str, list[str]]]:
             continue
         if ":" in raw:
             key, value = raw.split(":", 1)
-            scalars[key.strip()] = value.strip().strip('"')
+            scalars[key.strip()] = value.strip().strip("\"'")
     return scalars, lists
 
 

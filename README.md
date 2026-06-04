@@ -24,6 +24,10 @@
   <a href="./CHANGELOG.md">Changelog</a>
 </p>
 
+<p align="center">
+  <img src="docs/readme-assets/rebuttal-skill-suite-promo.png" alt="Rebuttal Skill Suite promotional overview" width="900" />
+</p>
+
 ## Why It Exists
 
 Author responses fail when they sound polished but still leak private process, contradict the paper, miss reviewer-specific evidence, overclaim results, or promise revisions that cannot be audited. Rebuttal Skill Suite packages those failure modes into reusable Codex skills, reviewer personas, schema checks, regression fixtures, dashboard previews, and release hygiene scripts.
@@ -57,6 +61,7 @@ flowchart LR
 | Optional ledgers | `schemas/*.example.csv` | Claim, number, result-table, and reviewer-issue map schemas. |
 | Regression fixtures | `examples/` | Anonymous good examples and intentionally bad fixtures used by validation scripts. |
 | Extension interface | `extensions/`, `scripts/create_extension.sh`, `scripts/validate_extensions.py` | Copyable skill-pack contract for project-specific prompts, checkers, schemas, fixtures, and validation commands. |
+| Promo image workflow | `skills/rebuttal-promo-image/` | Turn screenshots and repository facts into README/Xiaohongshu promo cards. |
 | Release tooling | `scripts/build_release_archive.sh`, `scripts/validate_release_package.py`, `scripts/validate_repo_clean.py` | Build and verify a clean distributable archive. |
 
 ## Anonymized Dashboard Preview

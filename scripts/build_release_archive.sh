@@ -28,8 +28,8 @@ copy_entry() {
 }
 
 for entry in \
-  README.md LICENSE VERSION CHANGELOG.md RELEASE_CHECKLIST.md Makefile .gitignore \
-  docs workflows prompts reviewer_roles schemas examples scripts skills .github; do
+  README.md LICENSE VERSION CHANGELOG.md RELEASE_CHECKLIST.md Makefile .gitignore .gitattributes \
+  docs workflows prompts reviewer_roles schemas examples scripts skills extensions webview .github; do
   copy_entry "$entry"
 done
 
@@ -45,6 +45,8 @@ python3 "$EXTRACTED/scripts/validate_release_package.py" "$EXTRACTED"
 python3 "$EXTRACTED/scripts/validate_repo_clean.py" "$EXTRACTED"
 python3 "$QUICK_VALIDATE" "$EXTRACTED/skills/rebuttal-audit"
 python3 "$QUICK_VALIDATE" "$EXTRACTED/skills/rebuttal-leak-audit"
+python3 "$QUICK_VALIDATE" "$EXTRACTED/skills/rebuttal-dashboard-data"
+python3 "$QUICK_VALIDATE" "$EXTRACTED/skills/rebuttal-promo-image"
 (
   cd "$EXTRACTED"
   bash scripts/run_regression_fixtures.sh

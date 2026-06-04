@@ -11,6 +11,7 @@ cd "$ROOT_DIR"
 python3 "$QUICK_VALIDATE" skills/rebuttal-audit
 python3 "$QUICK_VALIDATE" skills/rebuttal-leak-audit
 python3 "$QUICK_VALIDATE" skills/rebuttal-dashboard-data
+python3 "$QUICK_VALIDATE" skills/rebuttal-promo-image
 TMP_CODEX_HOME="$(mktemp -d)"
 TMP_OUT_DIR="$(mktemp -d)"
 trap 'rm -rf "$TMP_CODEX_HOME" "$TMP_OUT_DIR"' EXIT
@@ -18,6 +19,7 @@ bash scripts/install_skills.sh --codex-home "$TMP_CODEX_HOME" >"$TMP_OUT_DIR/ins
 python3 "$QUICK_VALIDATE" "$TMP_CODEX_HOME/skills/rebuttal-audit"
 python3 "$QUICK_VALIDATE" "$TMP_CODEX_HOME/skills/rebuttal-leak-audit"
 python3 "$QUICK_VALIDATE" "$TMP_CODEX_HOME/skills/rebuttal-dashboard-data"
+python3 "$QUICK_VALIDATE" "$TMP_CODEX_HOME/skills/rebuttal-promo-image"
 python3 scripts/check_persona_outputs.py reviewer_roles
 python3 scripts/aggregate_reviewer_feedback.py examples/persona_feedback >"$TMP_OUT_DIR/aggregate.md"
 python3 scripts/check_claim_ledger.py examples/anonymous_rebuttal.tex --ledger schemas/claim_ledger.example.csv --fail-on P0

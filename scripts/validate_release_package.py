@@ -20,6 +20,8 @@ REQUIRED_PATHS = [
     "skills/rebuttal-audit/SKILL.md",
     "skills/rebuttal-leak-audit/SKILL.md",
     "skills/rebuttal-dashboard-data/SKILL.md",
+    "skills/rebuttal-promo-image/SKILL.md",
+    "skills/rebuttal-promo-image/references/image2-prompt-recipes.md",
     "scripts/install_skills.sh",
     "scripts/build_release_archive.sh",
     "scripts/build_dashboard_data.py",
@@ -71,6 +73,9 @@ REQUIRED_PATHS = [
     "examples/visual_density_good.txt",
     "examples/platform_response_good.md",
     "examples/revision_promises_good.md",
+    "docs/readme-assets/rebuttal-skill-suite-promo.png",
+    "docs/readme-assets/rebuttal-promo-horizontal.html",
+    "docs/readme-assets/rebuttal-promo-xhs.html",
 ]
 
 PUBLIC_EXTS = {".md", ".tex", ".txt", ".csv", ".yaml", ".yml", ".py", ".sh", ".html", ".json", ".svg"}
